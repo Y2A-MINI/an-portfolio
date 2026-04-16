@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — AN</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy-deep: #080E1A;
+  --navy-dark: #0D1829;
+  --navy-mid: #152238;
+  --navy-light: #1E3050;
+  --gold: #C9A96E;
+  --gold-light: #DFC291;
+  --text: #E8E4DD;
+  --text-muted: #8A8B8E;
+  --white: #F5F3EF;
+  --border: rgba(201, 169, 110, 0.12);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans JP', 'Inter', system-ui, sans-serif;
+  background: var(--navy-deep); color: var(--text); -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 28px 56px; background: var(--navy-deep);
+  border-bottom: 1px solid transparent; transition: border-color 0.3s;
+}
+nav.scrolled { border-bottom-color: var(--border); }
+.nav-logo { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.18em; color: var(--white); }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+.inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
+
+.page { padding-top: 200px; padding-bottom: 160px; min-height: 100vh; }
+.page-label {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+  letter-spacing: 0.3em; color: var(--gold); display: block; margin-bottom: 72px;
+}
+.about-hero {
+  display: flex; align-items: flex-start; gap: 48px; margin-bottom: 64px;
+}
+.about-hero-text { flex: 1; }
+.about-name {
+  font-family: 'Inter', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 300;
+  line-height: 1.1; letter-spacing: -0.02em; color: var(--white); margin-bottom: 8px;
+}
+.about-name-jp {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: 400;
+  color: var(--text-muted);
+}
+.about-photo {
+  width: 270px; height: 270px; flex-shrink: 0;
+  border-radius: 50%; overflow: hidden; cursor: pointer;
+}
+.about-photo img {
+  width: 100%; height: 100%; display: block; object-fit: cover;
+  transition: opacity 0.2s;
+}
+.about-photo:hover img { opacity: 0.85; }
+
+.lightbox-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(8, 14, 26, 0.95); align-items: center; justify-content: center;
+}
+.lightbox-overlay.open { display: flex; }
+.lightbox-img { max-width: 90vw; max-height: 90vh; object-fit: contain; display: block; }
+.lightbox-close {
+  position: absolute; top: 28px; right: 40px;
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400;
+  letter-spacing: 0.14em; color: var(--text-muted); cursor: pointer;
+  transition: color 0.2s; background: none; border: none;
+}
+.lightbox-close:hover { color: var(--gold); }
+
+.about-section { margin-bottom: 72px; }
+.about-section-label {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400;
+  letter-spacing: 0.14em; color: var(--gold); margin-bottom: 24px; display: block;
+}
+.about-text {
+  max-width: 560px;
+}
+.about-text p {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 15px; font-weight: 300;
+  line-height: 28px; color: var(--text-muted); margin-bottom: 16px;
+}
+
+.career-list { list-style: none; max-width: 560px; }
+.career-item {
+  display: grid; grid-template-columns: 100px 1fr; gap: 24px;
+  padding: 16px 0; border-bottom: 1px solid var(--border);
+}
+.career-year {
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400;
+  color: var(--text-muted);
+}
+.career-content {}
+.career-company {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: 500;
+  color: var(--white); margin-bottom: 4px;
+}
+.career-desc {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 300;
+  line-height: 22px; color: var(--text-muted);
+}
+
+.skill-list { list-style: none; max-width: 560px; }
+.skill-list li {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: 300;
+  color: var(--text-muted); padding: 8px 0;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.05);
+}
+
+footer { padding: 40px 0; border-top: 1px solid var(--border); }
+footer .inner { display: flex; align-items: center; justify-content: space-between; }
+.footer-copy { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.1em; color: var(--text-muted); }
+
+@media (max-width: 768px) {
+  nav { padding: 20px 24px; }
+  .inner { padding: 0 24px; }
+  .page { padding-top: 140px; padding-bottom: 100px; }
+  .page-label { margin-bottom: 48px; }
+  .about-hero { flex-direction: column-reverse; gap: 32px; }
+  .about-photo { width: 140px; height: 140px; }
+  .about-section { margin-bottom: 56px; }
+  .career-item { grid-template-columns: 80px 1fr; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">AN</a>
+  <ul class="nav-links">
+    <li><a href="index.html">works</a></li>
+    <li><a href="message.html">message</a></li>
+    <li><a href="contact.html">contact</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+  <div class="inner">
+    <span class="page-label">about</span>
+
+    <div class="about-hero">
+      <div class="about-hero-text">
+        <h1 class="about-name">Ayumu Nakajima</h1>
+        <p class="about-name-jp">中島 歩夢</p>
+      </div>
+      <div class="about-photo" id="profilePhoto">
+        <img src="images/profile.png" alt="Ayumu Nakajima">
+      </div>
+    </div>
+
+    <div class="about-section">
+      <span class="about-section-label">background</span>
+      <div class="about-text">
+        <p>インダストリアルデザインと建築を学んだのち、UI/UXの実務経験を経てWebエディトリアルの領域へ。バナー制作、ライティング、撮影ディレクションまでを一貫して担当。</p>
+        <p>現在はデザイン × AIコーディングを軸に、企業へのAIエージェント導入支援・業務自動化の設計と実装を行う。デザインとエンジニアリングの両面からプロダクトを形にする。</p>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <span class="about-section-label">career</span>
+      <ul class="career-list">
+        <li class="career-item">
+          <span class="career-year">2025.12 –</span>
+          <div class="career-content">
+            <div class="career-company">デザイン × AI コーディング</div>
+            <div class="career-desc">AIエージェント設計・構築、業務自動化、UI/UXデザイン。複数クライアントの横断支援。</div>
+          </div>
+        </li>
+        <li class="career-item">
+          <span class="career-year">2024 –</span>
+          <div class="career-content">
+            <div class="career-company">KicksWrap</div>
+            <div class="career-desc">アプリ開発、ストア改善、メルマガライティング、デザインコンサル、社内業務改善化。AIツール利用・構築に関するリテラシー担当としてAI講師就任。</div>
+          </div>
+        </li>
+        <li class="career-item">
+          <span class="career-year">2023</span>
+          <div class="career-content">
+            <div class="career-company">株式会社エニグモ</div>
+            <div class="career-desc">SNS広報・撮影</div>
+          </div>
+        </li>
+        <li class="career-item">
+          <span class="career-year">2022 – 2023</span>
+          <div class="career-content">
+            <div class="career-company">株式会社SODA</div>
+            <div class="career-desc">スニーカーダンク メディア部門。編集・ライティング・バナー制作・SEO記事・撮影補助。</div>
+          </div>
+        </li>
+        <li class="career-item">
+          <span class="career-year">2021 –</span>
+          <div class="career-content">
+            <div class="career-company">株式会社youthfull</div>
+            <div class="career-desc">事業エンカレッジの運営補助、広報デザインのディレクション。イベント企画・実施。</div>
+          </div>
+        </li>
+        <li class="career-item">
+          <span class="career-year">2021 – 2022</span>
+          <div class="career-content">
+            <div class="career-company">株式会社GORIDE</div>
+            <div class="career-desc">Shopify EC構築・サポート。商品登録、撮影ディレクション、バナー・LP制作。</div>
+          </div>
+        </li>
+        <li class="career-item">
+          <span class="career-year">2019 – 2021</span>
+          <div class="career-content">
+            <div class="career-company">株式会社ABC-MART</div>
+            <div class="career-desc">販売</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="about-section">
+      <span class="about-section-label">skills</span>
+      <ul class="skill-list">
+        <li>AI Agent Design / AI Workflow</li>
+        <li>UI/UX Design / Figma</li>
+        <li>HTML / CSS / JavaScript</li>
+        <li>Shopify / EC Operations</li>
+        <li>Editorial / Writing / Photography Direction</li>
+        <li>Event Planning / Direction</li>
+      </ul>
+    </div>
+
+  </div>
+</main>
+
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lbClose">ESC</button>
+  <img class="lightbox-img" id="lbImg" src="" alt="">
+</div>
+
+<footer>
+  <div class="inner">
+    <span class="footer-copy">&copy; 2026 AN</span>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+document.getElementById('profilePhoto').addEventListener('click', () => {
+  lbImg.src = 'images/profile.png';
+  lbImg.alt = 'Ayumu Nakajima';
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+document.getElementById('lbClose').addEventListener('click', () => {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+});
+lb.addEventListener('click', e => { if (e.target === lb) { lb.classList.remove('open'); document.body.style.overflow = ''; } });
+document.addEventListener('keydown', e => { if (lb.classList.contains('open') && e.key === 'Escape') { lb.classList.remove('open'); document.body.style.overflow = ''; } });
+</script>
+</body>
+</html>

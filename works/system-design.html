@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>発送自動化 + 卸業務統合 — AN</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy-deep: #080E1A;
+  --navy-dark: #0D1829;
+  --navy-mid: #152238;
+  --navy-light: #1E3050;
+  --gold: #C9A96E;
+  --gold-light: #DFC291;
+  --text: #E8E4DD;
+  --text-muted: #8A8B8E;
+  --white: #F5F3EF;
+  --border: rgba(201, 169, 110, 0.12);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans JP', 'Inter', system-ui, sans-serif;
+  background: var(--navy-deep); color: var(--text); -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 28px 56px; background: var(--navy-deep);
+  border-bottom: 1px solid transparent; transition: border-color 0.3s;
+}
+nav.scrolled { border-bottom-color: var(--border); }
+.nav-logo { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.18em; color: var(--white); }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+.inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
+
+.work-header { padding-top: 160px; }
+.work-meta-row { padding-top: 64px; display: flex; align-items: baseline; gap: 40px; }
+.work-tags-detail { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.14em; color: var(--gold); }
+.work-title-detail { font-family: 'Noto Sans JP', sans-serif; font-size: clamp(24px, 3.5vw, 36px); font-weight: 500; line-height: 44px; color: var(--white); padding-top: 16px; padding-bottom: 80px; }
+
+.gallery-strip {
+  display: flex; gap: 2px; overflow-x: auto; overflow-y: hidden;
+  margin-bottom: 80px; cursor: default;
+  scrollbar-width: thin; scrollbar-color: rgba(201, 169, 110, 0.3) transparent;
+}
+.gallery-strip::-webkit-scrollbar { height: 3px; }
+.gallery-strip::-webkit-scrollbar-track { background: transparent; }
+.gallery-strip::-webkit-scrollbar-thumb { background: rgba(201, 169, 110, 0.3); border-radius: 999px; }
+.gallery-item { flex-shrink: 0; height: 360px; overflow: hidden; background: var(--navy-mid); cursor: pointer; display: block; }
+.gallery-item img { height: 100%; width: auto; display: block; object-fit: contain; transition: opacity 0.2s; }
+.gallery-item:hover img { opacity: 0.85; }
+
+.work-body { padding-bottom: 80px; border-top: 1px solid var(--border); }
+.desc-block { display: grid; grid-template-columns: 120px 1fr; gap: 0 48px; padding: 40px 0; border-bottom: 1px solid var(--border); }
+.desc-key { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); padding-top: 2px; }
+.desc-val { font-family: 'Noto Sans JP', sans-serif; font-size: 15px; font-weight: 300; line-height: 26px; color: var(--text); }
+
+.back-link-row { padding-bottom: 120px; }
+.back-link { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); transition: color 0.2s; }
+.back-link:hover { color: var(--gold); }
+
+footer { padding: 40px 0; border-top: 1px solid var(--border); }
+footer .inner { display: flex; align-items: center; justify-content: space-between; }
+.footer-copy { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.1em; color: var(--text-muted); }
+
+.lightbox-overlay {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(8, 14, 26, 0.95); align-items: center; justify-content: center;
+}
+.lightbox-overlay.open { display: flex; }
+.lightbox-img { max-width: 90vw; max-height: 90vh; object-fit: contain; display: block; }
+.lightbox-close { position: absolute; top: 28px; right: 40px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); cursor: pointer; transition: color 0.2s; background: none; border: none; }
+.lightbox-close:hover { color: var(--gold); }
+.lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 300; color: var(--gold); cursor: pointer; background: none; border: none; padding: 16px 24px; transition: color 0.2s; line-height: 1; }
+.lightbox-prev:hover, .lightbox-next:hover { color: var(--gold-light); }
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+.lightbox-counter { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); }
+
+@media (max-width: 768px) {
+  nav { padding: 20px 24px; }
+  .inner { padding: 0 24px; }
+  .work-header { padding-top: 120px; }
+  .work-meta-row { flex-direction: column; gap: 0; padding-top: 40px; }
+  .work-title-detail { padding-bottom: 48px; }
+  .desc-block { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
+  .gallery-item { height: 240px; }
+  .back-link-row { padding-bottom: 80px; }
+  .lightbox-prev { left: 4px; }
+  .lightbox-next { right: 4px; }
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="../index.html" class="nav-logo">AN</a>
+  <ul class="nav-links">
+    <li><a href="../index.html" class="active">works</a></li>
+    <li><a href="../message.html">message</a></li>
+    <li><a href="../contact.html">contact</a></li>
+  </ul>
+</nav>
+
+<div class="work-header">
+  <div class="inner">
+    <div class="work-meta-row">
+      <span class="work-tags-detail">system design</span>
+    </div>
+    <h1 class="work-title-detail">発送自動化 + 卸業務統合</h1>
+  </div>
+</div>
+
+<div class="work-body">
+  <div class="inner">
+    <div class="desc-block">
+      <span class="desc-key">what</span>
+      <p class="desc-val">KicksWrapの発送業務自動化と卸業務の統合システム設計。受注〜仕入れを一元管理。</p>
+    </div>
+    <div class="desc-block">
+      <span class="desc-key">why</span>
+      <p class="desc-val">手作業が多く属人化していた業務フローを、システムで標準化・自動化する。</p>
+    </div>
+    <div class="desc-block">
+      <span class="desc-key">how</span>
+      <p class="desc-val">業務ヒアリング → システム設計 → Shopify × GAS × スプシで統合フロー構築。</p>
+    </div>
+    <div class="desc-block">
+      <span class="desc-key">tags</span>
+      <p class="desc-val">system design</p>
+    </div>
+  </div>
+</div>
+
+<div class="gallery-strip" id="gallery">
+  <div class="gallery-item" data-index="0">
+    <img src="../images/diagrams/system-design.svg" alt="システム設計図">
+  </div>
+</div>
+
+<div class="inner">
+  <div class="back-link-row">
+    <a href="kickswrap.html" class="back-link">&larr; works</a>
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span class="footer-copy">&copy; 2026 AN</span>
+  </div>
+</footer>
+
+<div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lbClose">ESC</button>
+  <button class="lightbox-prev" id="lbPrev">&larr;</button>
+  <img class="lightbox-img" id="lbImg" src="" alt="">
+  <button class="lightbox-next" id="lbNext">&rarr;</button>
+  <span class="lightbox-counter" id="lbCounter"></span>
+</div>
+
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 10); }, { passive: true });
+const images = [
+  { src: '../images/diagrams/system-design.svg', alt: 'システム設計図' }
+];
+let current = 0;
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbCounter = document.getElementById('lbCounter');
+function openLightbox(i) { current = i; updateLightbox(); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeLightbox() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+function updateLightbox() { lbImg.src = images[current].src; lbImg.alt = images[current].alt; lbCounter.textContent = (current + 1) + ' / ' + images.length; }
+function prevImage() { current = (current - 1 + images.length) % images.length; updateLightbox(); }
+function nextImage() { current = (current + 1) % images.length; updateLightbox(); }
+document.querySelectorAll('.gallery-item').forEach(item => { item.addEventListener('click', () => { openLightbox(parseInt(item.dataset.index)); }); });
+document.getElementById('lbClose').addEventListener('click', closeLightbox);
+document.getElementById('lbPrev').addEventListener('click', prevImage);
+document.getElementById('lbNext').addEventListener('click', nextImage);
+lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+document.addEventListener('keydown', e => { if (!lb.classList.contains('open')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowLeft') prevImage(); if (e.key === 'ArrowRight') nextImage(); });
+</script>
+</body>
+</html>

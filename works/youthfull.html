@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Youthfull — AN</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens ===== */
+:root {
+  --navy-deep: #080E1A;
+  --navy-dark: #0D1829;
+  --navy-mid: #152238;
+  --navy-light: #1E3050;
+  --gold: #C9A96E;
+  --gold-light: #DFC291;
+  --text: #E8E4DD;
+  --text-muted: #8A8B8E;
+  --white: #F5F3EF;
+  --border: rgba(201, 169, 110, 0.12);
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', 'Inter', system-ui, sans-serif;
+  background: var(--navy-deep);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ===== Nav ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 28px 56px;
+  background: var(--navy-deep);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+nav.scrolled { border-bottom-color: var(--border); }
+.nav-logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--white);
+}
+.nav-links {
+  display: flex; gap: 40px; list-style: none;
+}
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--gold); }
+
+/* ===== Layout ===== */
+.inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ===== Client Header ===== */
+.client-header {
+  padding-top: 160px;
+  padding-bottom: 72px;
+}
+.back-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  transition: color 0.2s;
+  display: inline-block;
+  margin-bottom: 48px;
+}
+.back-link:hover { color: var(--gold); }
+.client-title {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+
+/* ===== Works Grid ===== */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  padding-bottom: 160px;
+}
+.work-card {
+  display: block;
+  background: var(--navy-dark);
+  transition: background 0.2s;
+}
+.work-card:hover { background: var(--navy-mid); }
+.work-thumb {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--navy-mid);
+}
+.work-thumb img {
+  width: 100%; height: 100%;
+  display: block; object-fit: cover;
+}
+.work-body {
+  padding: 28px 28px 32px;
+}
+.work-tags {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 10px;
+  display: block;
+}
+.work-title {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--white);
+}
+
+/* ===== Footer ===== */
+footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+}
+footer .inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-copy {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  nav { padding: 20px 24px; }
+  .inner { padding: 0 24px; }
+  .client-header { padding-top: 120px; padding-bottom: 48px; }
+  .works-grid { grid-template-columns: 1fr; gap: 1px; padding-bottom: 100px; }
+  .work-body { padding: 20px 20px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="../index.html" class="nav-logo">AN</a>
+  <ul class="nav-links">
+    <li><a href="../index.html" class="active">works</a></li>
+    <li><a href="../message.html">message</a></li>
+    <li><a href="../contact.html">contact</a></li>
+  </ul>
+</nav>
+
+<div class="client-header">
+  <div class="inner">
+    <a href="../index.html" class="back-link">&larr; works</a>
+    <h1 class="client-title">Youthfull</h1>
+  </div>
+</div>
+
+<div class="inner">
+  <div class="works-grid">
+
+    <a href="fukufuku-yamaguchi.html" class="work-card">
+      <div class="work-thumb">
+        <img src="../images/yamaguchi/kv.png" alt="ふくふく山口">
+      </div>
+      <div class="work-body">
+        <span class="work-tags">event / design / direction</span>
+        <div class="work-title">ふくふく山口</div>
+      </div>
+    </a>
+
+    <a href="marutto-iwate.html" class="work-card">
+      <div class="work-thumb">
+        <img src="../images/iwate/kv.png" alt="まるっと岩手">
+      </div>
+      <div class="work-body">
+        <span class="work-tags">event / design / direction</span>
+        <div class="work-title">まるっと岩手</div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <div class="inner">
+    <span class="footer-copy">&copy; 2026 AN</span>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+</script>
+</body>
+</html>

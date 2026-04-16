@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — AN</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens ===== */
+:root {
+  --navy-deep: #080E1A;
+  --navy-dark: #0D1829;
+  --navy-mid: #152238;
+  --navy-light: #1E3050;
+  --gold: #C9A96E;
+  --gold-light: #DFC291;
+  --text: #E8E4DD;
+  --text-muted: #8A8B8E;
+  --white: #F5F3EF;
+  --border: rgba(201, 169, 110, 0.12);
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans JP', 'Inter', system-ui, sans-serif;
+  background: var(--navy-deep);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ===== Nav ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 28px 56px;
+  background: var(--navy-deep);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+nav.scrolled { border-bottom-color: var(--border); }
+.nav-logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--white);
+}
+.nav-links {
+  display: flex; gap: 40px; list-style: none;
+}
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--gold); }
+
+/* ===== Layout ===== */
+.inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ===== Page ===== */
+.page {
+  padding-top: 200px;
+  padding-bottom: 160px;
+  min-height: 100vh;
+}
+.page-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 72px;
+}
+.contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.contact-item {
+  display: flex;
+  align-items: baseline;
+  gap: 48px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+}
+.contact-item:last-child { border-bottom: 1px solid var(--border); }
+.contact-key {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  min-width: 80px;
+}
+.contact-val {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--white);
+  transition: color 0.2s;
+}
+a.contact-val:hover { color: var(--gold); }
+
+/* ===== Footer ===== */
+footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+}
+footer .inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-copy {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  nav { padding: 20px 24px; }
+  .inner { padding: 0 24px; }
+  .page { padding-top: 140px; padding-bottom: 100px; }
+  .page-label { margin-bottom: 48px; }
+  .contact-item { gap: 24px; flex-direction: column; }
+  .contact-key { min-width: unset; }
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">AN</a>
+  <ul class="nav-links">
+    <li><a href="index.html">works</a></li>
+    <li><a href="message.html">message</a></li>
+    <li><a href="contact.html" class="active">contact</a></li>
+  </ul>
+</nav>
+
+<main class="page">
+  <div class="inner">
+    <span class="page-label">contact</span>
+    <ul class="contact-list">
+      <li class="contact-item">
+        <span class="contact-key">Email</span>
+        <a href="mailto:placeholder@example.com" class="contact-val">placeholder@example.com</a>
+      </li>
+      <li class="contact-item">
+        <span class="contact-key">X (Twitter)</span>
+        <a href="https://x.com/placeholder" target="_blank" rel="noopener" class="contact-val">@placeholder</a>
+      </li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  <div class="inner">
+    <span class="footer-copy">&copy; 2026 AN</span>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+</script>
+</body>
+</html>

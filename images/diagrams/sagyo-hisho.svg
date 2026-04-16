@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" font-family="system-ui, -apple-system, sans-serif">
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="#080E1A"/>
+
+  <!-- 中央の区切り線（縦） -->
+  <line x1="400" y1="60" x2="400" y2="440" stroke="rgba(201,169,110,0.12)" stroke-width="1"/>
+
+  <!-- ラベル行 -->
+  <text x="180" y="52" text-anchor="middle" fill="#8A8B8E" font-size="11" font-weight="600" letter-spacing="0.12em">BEFORE</text>
+  <text x="620" y="52" text-anchor="middle" fill="#C9A96E" font-size="11" font-weight="600" letter-spacing="0.12em">AFTER</text>
+
+  <!-- タイトル行（水平線） -->
+  <line x1="48" y1="60" x2="340" y2="60" stroke="rgba(139,69,19,0.4)" stroke-width="1"/>
+  <line x1="460" y1="60" x2="752" y2="60" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+
+  <!-- 中央矢印 -->
+  <line x1="370" y1="250" x2="430" y2="250" stroke="#C9A96E" stroke-width="1.5"/>
+  <polyline points="422,244 430,250 422,256" fill="none" stroke="#C9A96E" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- ============ BEFORE側 ============ -->
+  <text x="80" y="108" fill="rgba(139,69,19,0.9)" font-size="13" font-weight="600" letter-spacing="0.05em">告知文作成（人力運用）</text>
+  <line x1="80" y1="114" x2="260" y2="114" stroke="rgba(139,69,19,0.35)" stroke-width="1"/>
+
+  <rect x="64" y="138" width="8" height="8" rx="1" fill="rgba(139,69,19,0.7)"/>
+  <text x="84" y="148" fill="#E8E4DD" font-size="14.5">シートで依頼を確認</text>
+
+  <rect x="64" y="176" width="8" height="8" rx="1" fill="rgba(139,69,19,0.7)"/>
+  <text x="84" y="186" fill="#E8E4DD" font-size="14.5">告知文を手動で作成</text>
+
+  <rect x="64" y="214" width="8" height="8" rx="1" fill="rgba(139,69,19,0.7)"/>
+  <text x="84" y="224" fill="#E8E4DD" font-size="14.5">Slackに貼って確認依頼</text>
+
+  <rect x="64" y="252" width="8" height="8" rx="1" fill="rgba(139,69,19,0.7)"/>
+  <text x="84" y="262" fill="#E8E4DD" font-size="14.5">修正→再投稿→再確認...</text>
+
+  <!-- Before フロー（人間が往復） -->
+  <g opacity="0.5">
+    <!-- 人 -->
+    <circle cx="108" cy="316" r="12" fill="none" stroke="rgba(139,69,19,0.5)" stroke-width="1"/>
+    <line x1="108" y1="328" x2="108" y2="356" stroke="rgba(139,69,19,0.5)" stroke-width="1"/>
+    <line x1="94" y1="340" x2="122" y2="340" stroke="rgba(139,69,19,0.5)" stroke-width="1"/>
+    <text x="108" y="374" text-anchor="middle" fill="rgba(139,69,19,0.6)" font-size="9">担当者</text>
+
+    <!-- シート -->
+    <rect x="170" y="306" width="60" height="28" rx="2" fill="none" stroke="rgba(139,69,19,0.5)" stroke-width="1"/>
+    <text x="200" y="324" text-anchor="middle" fill="#8A8B8E" font-size="10">Sheets</text>
+
+    <!-- Slack -->
+    <rect x="260" y="306" width="60" height="28" rx="2" fill="none" stroke="rgba(139,69,19,0.5)" stroke-width="1"/>
+    <text x="290" y="324" text-anchor="middle" fill="#8A8B8E" font-size="10">Slack</text>
+
+    <!-- 往復の矢印（人→シート→Slack→人の繰り返し） -->
+    <line x1="122" y1="316" x2="170" y2="316" stroke="rgba(139,69,19,0.4)" stroke-width="1"/>
+    <polyline points="167,313 170,316 167,319" fill="none" stroke="rgba(139,69,19,0.4)" stroke-width="1"/>
+
+    <line x1="230" y1="316" x2="260" y2="316" stroke="rgba(139,69,19,0.4)" stroke-width="1"/>
+    <polyline points="257,313 260,316 257,319" fill="none" stroke="rgba(139,69,19,0.4)" stroke-width="1"/>
+
+    <!-- 差し戻しの逆矢印 -->
+    <line x1="260" y1="338" x2="230" y2="338" stroke="rgba(139,69,19,0.35)" stroke-width="1" stroke-dasharray="3,3"/>
+    <polyline points="233,335 230,338 233,341" fill="none" stroke="rgba(139,69,19,0.35)" stroke-width="1"/>
+
+    <line x1="170" y1="338" x2="122" y2="338" stroke="rgba(139,69,19,0.35)" stroke-width="1" stroke-dasharray="3,3"/>
+    <polyline points="125,335 122,338 125,341" fill="none" stroke="rgba(139,69,19,0.35)" stroke-width="1"/>
+
+    <!-- 往復を示すラベル -->
+    <text x="200" y="362" text-anchor="middle" fill="rgba(139,69,19,0.5)" font-size="9">何度も往復</text>
+  </g>
+
+  <text x="176" y="428" text-anchor="middle" fill="rgba(139,69,19,0.6)" font-size="11" letter-spacing="0.06em">往復多い・属人化・品質不安定</text>
+
+  <!-- ============ AFTER側 ============ -->
+  <text x="436" y="108" fill="#C9A96E" font-size="13" font-weight="600" letter-spacing="0.05em">作業秘書 — AI Agent Harness</text>
+  <line x1="436" y1="114" x2="720" y2="114" stroke="rgba(201,169,110,0.35)" stroke-width="1"/>
+
+  <line x1="436" y1="141" x2="446" y2="151" stroke="rgba(201,169,110,0.8)" stroke-width="1.5"/>
+  <line x1="446" y1="141" x2="436" y2="151" stroke="rgba(201,169,110,0.8)" stroke-width="1.5"/>
+  <text x="460" y="150" fill="#E8E4DD" font-size="14.5">AIエージェントが全工程を統括</text>
+
+  <line x1="436" y1="189" x2="446" y2="199" stroke="rgba(201,169,110,0.8)" stroke-width="1.5"/>
+  <line x1="446" y1="189" x2="436" y2="199" stroke="rgba(201,169,110,0.8)" stroke-width="1.5"/>
+  <text x="460" y="198" fill="#E8E4DD" font-size="14.5">人間は最終確認のみ</text>
+
+  <line x1="436" y1="237" x2="446" y2="247" stroke="rgba(201,169,110,0.8)" stroke-width="1.5"/>
+  <line x1="446" y1="237" x2="436" y2="247" stroke="rgba(201,169,110,0.8)" stroke-width="1.5"/>
+  <text x="460" y="246" fill="#E8E4DD" font-size="14.5">Slack/シートの往復が激減</text>
+
+  <!-- After フロー（AI Agentが中心） -->
+  <g opacity="0.78">
+    <!-- AI Agent 中央（大きく） -->
+    <rect x="540" y="290" width="100" height="44" rx="3" fill="rgba(201,169,110,0.1)" stroke="rgba(201,169,110,0.6)" stroke-width="1"/>
+    <text x="590" y="309" text-anchor="middle" fill="#C9A96E" font-size="11" font-weight="600">AI Agent</text>
+    <text x="590" y="325" text-anchor="middle" fill="#8A8B8E" font-size="9">ハーネス統括</text>
+
+    <!-- Sheets（左上） -->
+    <rect x="440" y="286" width="60" height="26" rx="2" fill="none" stroke="rgba(201,169,110,0.35)" stroke-width="1"/>
+    <text x="470" y="303" text-anchor="middle" fill="#8A8B8E" font-size="10">Sheets</text>
+
+    <!-- ルール（左下） -->
+    <rect x="440" y="336" width="60" height="26" rx="2" fill="none" stroke="rgba(201,169,110,0.2)" stroke-width="1"/>
+    <text x="470" y="353" text-anchor="middle" fill="rgba(201,169,110,0.5)" font-size="10">ルール</text>
+
+    <!-- Slack（右上） -->
+    <rect x="680" y="286" width="56" height="26" rx="2" fill="none" stroke="rgba(201,169,110,0.35)" stroke-width="1"/>
+    <text x="708" y="303" text-anchor="middle" fill="#8A8B8E" font-size="10">Slack</text>
+
+    <!-- 人（右下・最終確認のみ） -->
+    <circle cx="708" cy="348" r="10" fill="none" stroke="rgba(201,169,110,0.35)" stroke-width="1"/>
+    <line x1="708" y1="358" x2="708" y2="376" stroke="rgba(201,169,110,0.35)" stroke-width="1"/>
+    <line x1="698" y1="366" x2="718" y2="366" stroke="rgba(201,169,110,0.35)" stroke-width="1"/>
+    <text x="708" y="394" text-anchor="middle" fill="rgba(201,169,110,0.5)" font-size="9">最終確認のみ</text>
+
+    <!-- 接続線: Sheets → Agent（自動読み取り） -->
+    <line x1="500" y1="299" x2="540" y2="305" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+    <polyline points="536,302 540,305 536,308" fill="none" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+
+    <!-- 接続線: ルール → Agent -->
+    <line x1="500" y1="349" x2="540" y2="325" stroke="rgba(201,169,110,0.25)" stroke-width="1" stroke-dasharray="3,3"/>
+
+    <!-- 接続線: Agent → Slack（自動投稿） -->
+    <line x1="640" y1="305" x2="680" y2="299" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+    <polyline points="676,296 680,299 676,302" fill="none" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+
+    <!-- 接続線: Slack → 人（確認だけ届く） -->
+    <line x1="708" y1="312" x2="708" y2="338" stroke="rgba(201,169,110,0.3)" stroke-width="1"/>
+    <polyline points="705,335 708,338 711,335" fill="none" stroke="rgba(201,169,110,0.3)" stroke-width="1"/>
+
+    <!-- フロー説明ラベル -->
+    <text x="520" y="282" fill="rgba(201,169,110,0.45)" font-size="8">自動読取</text>
+    <text x="650" y="282" fill="rgba(201,169,110,0.45)" font-size="8">自動投稿</text>
+    <text x="722" y="330" fill="rgba(201,169,110,0.45)" font-size="8">通知</text>
+  </g>
+
+  <text x="590" y="428" text-anchor="middle" fill="rgba(201,169,110,0.6)" font-size="11" letter-spacing="0.06em">ハーネス化・往復ゼロ・品質安定</text>
+
+  <!-- 下部区切り線 -->
+  <line x1="48" y1="440" x2="752" y2="440" stroke="rgba(201,169,110,0.08)" stroke-width="1"/>
+  <text x="400" y="472" text-anchor="middle" fill="#8A8B8E" font-size="11" letter-spacing="0.1em">CASE 01 — 作業秘書（AIエージェントによるハーネス化）</text>
+</svg>

@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" font-family="system-ui, -apple-system, sans-serif">
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="#080E1A"/>
+
+  <!-- 中央の区切り線（縦） -->
+  <line x1="400" y1="60" x2="400" y2="440" stroke="rgba(201,169,110,0.12)" stroke-width="1"/>
+
+  <!-- ラベル行 -->
+  <text x="180" y="52" text-anchor="middle" fill="#8A8B8E" font-size="11" font-weight="600" letter-spacing="0.12em">BEFORE</text>
+  <text x="620" y="52" text-anchor="middle" fill="#C9A96E" font-size="11" font-weight="600" letter-spacing="0.12em">AFTER</text>
+
+  <!-- タイトル行水平線 -->
+  <line x1="48" y1="60" x2="340" y2="60" stroke="rgba(139,69,19,0.4)" stroke-width="1"/>
+  <line x1="460" y1="60" x2="752" y2="60" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+
+  <!-- 中央矢印 -->
+  <line x1="370" y1="250" x2="430" y2="250" stroke="#C9A96E" stroke-width="1.5"/>
+  <polyline points="422,244 430,250 422,256" fill="none" stroke="#C9A96E" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- ============ BEFORE側 ============ -->
+  <text x="80" y="108" fill="rgba(139,69,19,0.9)" font-size="13" font-weight="600" letter-spacing="0.05em">発送・卸業務</text>
+  <line x1="80" y1="114" x2="198" y2="114" stroke="rgba(139,69,19,0.35)" stroke-width="1"/>
+
+  <rect x="64" y="138" width="8" height="8" rx="1" fill="rgba(139,69,19,0.7)"/>
+  <text x="84" y="148" fill="#E8E4DD" font-size="14.5">発送依頼を手動処理</text>
+
+  <rect x="64" y="186" width="8" height="8" rx="1" fill="rgba(139,69,19,0.7)"/>
+  <text x="84" y="196" fill="#E8E4DD" font-size="14.5">在庫差し引きを手計算</text>
+
+  <rect x="64" y="234" width="8" height="8" rx="1" fill="rgba(139,69,19,0.7)"/>
+  <text x="84" y="244" fill="#E8E4DD" font-size="14.5">仕入れ判断が属人化</text>
+
+  <!-- バラバラなシステム構成イメージ -->
+  <g opacity="0.5">
+    <!-- 孤立したノード群 -->
+    <!-- 受注 -->
+    <rect x="68" y="298" width="68" height="28" rx="2" fill="none" stroke="rgba(139,69,19,0.55)" stroke-width="1"/>
+    <text x="102" y="316" text-anchor="middle" fill="#8A8B8E" font-size="10">Shopify受注</text>
+
+    <!-- 発送 -->
+    <rect x="168" y="280" width="68" height="28" rx="2" fill="none" stroke="rgba(139,69,19,0.55)" stroke-width="1"/>
+    <text x="202" y="298" text-anchor="middle" fill="#8A8B8E" font-size="10">発送依頼書</text>
+
+    <!-- 在庫 -->
+    <rect x="88" y="348" width="68" height="28" rx="2" fill="none" stroke="rgba(139,69,19,0.55)" stroke-width="1"/>
+    <text x="122" y="366" text-anchor="middle" fill="#8A8B8E" font-size="10">在庫シート</text>
+
+    <!-- 仕入れ -->
+    <rect x="202" y="340" width="68" height="28" rx="2" fill="none" stroke="rgba(139,69,19,0.55)" stroke-width="1"/>
+    <text x="236" y="358" text-anchor="middle" fill="#8A8B8E" font-size="10">仕入れ管理</text>
+
+    <!-- 人アイコン（属人化） -->
+    <circle cx="290" cy="310" r="10" fill="none" stroke="rgba(139,69,19,0.4)" stroke-width="1"/>
+    <line x1="290" y1="320" x2="290" y2="344" stroke="rgba(139,69,19,0.4)" stroke-width="1"/>
+    <line x1="278" y1="330" x2="302" y2="330" stroke="rgba(139,69,19,0.4)" stroke-width="1"/>
+    <line x1="290" y1="344" x2="280" y2="360" stroke="rgba(139,69,19,0.4)" stroke-width="1"/>
+    <line x1="290" y1="344" x2="300" y2="360" stroke="rgba(139,69,19,0.4)" stroke-width="1"/>
+    <text x="290" y="376" text-anchor="middle" fill="rgba(139,69,19,0.6)" font-size="9">担当者依存</text>
+
+    <!-- バラバラな接続線 -->
+    <line x1="136" y1="312" x2="168" y2="299" stroke="rgba(139,69,19,0.35)" stroke-width="1" stroke-dasharray="3,3"/>
+    <line x1="122" y1="326" x2="122" y2="348" stroke="rgba(139,69,19,0.35)" stroke-width="1" stroke-dasharray="3,3"/>
+    <line x1="156" y1="362" x2="202" y2="354" stroke="rgba(139,69,19,0.35)" stroke-width="1" stroke-dasharray="3,3"/>
+    <line x1="270" y1="307" x2="236" y2="298" stroke="rgba(139,69,19,0.35)" stroke-width="1" stroke-dasharray="3,3"/>
+  </g>
+
+  <text x="176" y="428" text-anchor="middle" fill="rgba(139,69,19,0.6)" font-size="11" letter-spacing="0.06em">分断・手作業・ミスリスク</text>
+
+  <!-- ============ AFTER側 ============ -->
+  <text x="436" y="108" fill="#C9A96E" font-size="13" font-weight="600" letter-spacing="0.05em">発送自動化 + 卸業務統合システム</text>
+  <line x1="436" y1="114" x2="726" y2="114" stroke="rgba(201,169,110,0.35)" stroke-width="1"/>
+
+  <line x1="436" y1="141" x2="446" y2="151" stroke="rgba(201,169,110,0.8)" stroke-width="1.5"/>
+  <line x1="446" y1="141" x2="436" y2="151" stroke="rgba(201,169,110,0.8)" stroke-width="1.5"/>
+  <text x="460" y="150" fill="#E8E4DD" font-size="14.5">発送フロー自動化</text>
+
+  <line x1="436" y1="189" x2="446" y2="199" stroke="rgba(201,169,110,0.8)" stroke-width="1.5"/>
+  <line x1="446" y1="189" x2="436" y2="199" stroke="rgba(201,169,110,0.8)" stroke-width="1.5"/>
+  <text x="460" y="198" fill="#E8E4DD" font-size="14.5">在庫データで受注〜仕入れ統合</text>
+
+  <line x1="436" y1="237" x2="446" y2="247" stroke="rgba(201,169,110,0.8)" stroke-width="1.5"/>
+  <line x1="446" y1="237" x2="436" y2="247" stroke="rgba(201,169,110,0.8)" stroke-width="1.5"/>
+  <text x="460" y="246" fill="#E8E4DD" font-size="14.5">Shopify + MoneyForward API連携</text>
+
+  <!-- 統合されたシステム構成図 -->
+  <g opacity="0.78">
+    <!-- 中心オーケストレーター -->
+    <rect x="548" y="310" width="88" height="36" rx="3" fill="rgba(201,169,110,0.1)" stroke="rgba(201,169,110,0.6)" stroke-width="1"/>
+    <text x="592" y="325" text-anchor="middle" fill="#C9A96E" font-size="10" font-weight="600">統合エンジン</text>
+    <text x="592" y="338" text-anchor="middle" fill="#8A8B8E" font-size="8">GAS + Claude</text>
+
+    <!-- Shopify -->
+    <rect x="440" y="298" width="68" height="28" rx="2" fill="none" stroke="rgba(201,169,110,0.35)" stroke-width="1"/>
+    <text x="474" y="316" text-anchor="middle" fill="#8A8B8E" font-size="10">Shopify</text>
+
+    <!-- MoneyForward -->
+    <rect x="440" y="342" width="68" height="28" rx="2" fill="none" stroke="rgba(201,169,110,0.35)" stroke-width="1"/>
+    <text x="474" y="360" text-anchor="middle" fill="#8A8B8E" font-size="10">MoneyFwd</text>
+
+    <!-- 発送 -->
+    <rect x="676" y="298" width="60" height="28" rx="2" fill="none" stroke="rgba(201,169,110,0.35)" stroke-width="1"/>
+    <text x="706" y="316" text-anchor="middle" fill="#8A8B8E" font-size="10">発送指示</text>
+
+    <!-- 仕入れ -->
+    <rect x="676" y="342" width="60" height="28" rx="2" fill="none" stroke="rgba(201,169,110,0.35)" stroke-width="1"/>
+    <text x="706" y="360" text-anchor="middle" fill="#8A8B8E" font-size="10">仕入れ判断</text>
+
+    <!-- 在庫DB -->
+    <rect x="548" y="384" width="88" height="28" rx="2" fill="none" stroke="rgba(201,169,110,0.25)" stroke-width="1"/>
+    <text x="592" y="402" text-anchor="middle" fill="#8A8B8E" font-size="10">在庫 DB</text>
+
+    <!-- 接続線（整然） -->
+    <!-- Shopify → エンジン -->
+    <line x1="508" y1="312" x2="548" y2="323" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+    <polyline points="544,320 548,323 544,326" fill="none" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+
+    <!-- MoneyFwd → エンジン -->
+    <line x1="508" y1="356" x2="548" y2="345" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+    <polyline points="544,342 548,345 544,348" fill="none" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+
+    <!-- エンジン → 発送 -->
+    <line x1="636" y1="323" x2="676" y2="312" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+    <polyline points="672,309 676,312 672,315" fill="none" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+
+    <!-- エンジン → 仕入れ -->
+    <line x1="636" y1="345" x2="676" y2="356" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+    <polyline points="672,353 676,356 672,359" fill="none" stroke="rgba(201,169,110,0.4)" stroke-width="1"/>
+
+    <!-- エンジン → 在庫DB -->
+    <line x1="592" y1="346" x2="592" y2="384" stroke="rgba(201,169,110,0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+    <polyline points="588,380 592,384 596,380" fill="none" stroke="rgba(201,169,110,0.3)" stroke-width="1"/>
+  </g>
+
+  <text x="570" y="428" text-anchor="middle" fill="rgba(201,169,110,0.6)" font-size="11" letter-spacing="0.06em">自動化・統合・スケーラブル</text>
+
+  <!-- 下部区切り線 -->
+  <line x1="48" y1="440" x2="752" y2="440" stroke="rgba(201,169,110,0.08)" stroke-width="1"/>
+  <text x="400" y="472" text-anchor="middle" fill="#8A8B8E" font-size="11" letter-spacing="0.1em">CASE 03 — 発送自動化 + 卸業務統合（Shopify / MoneyForward API）</text>
+</svg>

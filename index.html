@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — AN</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens ===== */
+:root {
+  --navy-deep: #080E1A;
+  --navy-dark: #0D1829;
+  --navy-mid: #152238;
+  --navy-light: #1E3050;
+  --gold: #C9A96E;
+  --gold-light: #DFC291;
+  --text: #E8E4DD;
+  --text-muted: #8A8B8E;
+  --white: #F5F3EF;
+  --border: rgba(201, 169, 110, 0.12);
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans JP', 'Inter', system-ui, sans-serif;
+  background: var(--navy-deep);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ===== Nav ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 28px 56px;
+  background: var(--navy-deep);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+nav.scrolled { border-bottom-color: var(--border); }
+.nav-logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--white);
+}
+.nav-links {
+  display: flex; gap: 40px; list-style: none;
+}
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--gold); }
+
+/* ===== Layout ===== */
+.inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ===== Hero ===== */
+.hero {
+  padding-top: 200px;
+  padding-bottom: 20px;
+}
+.hero .inner { position: relative; }
+.hero-axis {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  margin-bottom: 32px;
+  display: block;
+}
+.hero-name {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+
+/* ===== Client Cards Section ===== */
+.works-section {
+  padding-top: 0;
+  padding-bottom: 160px;
+}
+.client-logos {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0;
+}
+.client-logo-link {
+  display: block;
+  transition: opacity 0.2s;
+}
+.client-logo-link:hover { opacity: 0.7; }
+.client-logo-link img {
+  height: 180px;
+  width: auto;
+  display: block;
+}
+.client-logo-yf img {
+  height: 140px;
+}
+.client-logo-yf-text img {
+  height: 70px;
+}
+.client-text-link {
+  display: block;
+  text-align: center;
+  margin-top: 80px;
+  padding: 64px 0;
+  position: relative;
+  overflow: hidden;
+}
+.client-text-link::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background-image:
+    linear-gradient(0deg, rgba(223,194,145,0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(223,194,145,0.14) 1px, transparent 1px),
+    linear-gradient(60deg, rgba(223,194,145,0.2) 1px, transparent 1px),
+    linear-gradient(120deg, rgba(223,194,145,0.2) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px, 48px 48px, 48px 48px;
+  animation: gridRotate 60s linear infinite;
+}
+.client-text-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle 300px at 30% 50%, rgba(223,194,145,0.1) 0%, transparent 70%),
+    radial-gradient(circle 200px at 70% 50%, rgba(223,194,145,0.07) 0%, transparent 70%);
+  animation: pulseGlow 8s ease-in-out infinite alternate;
+}
+@keyframes gridRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes pulseGlow {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+.client-text-link a {
+  position: relative;
+  z-index: 1;
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.client-text-link a:hover { color: var(--gold); }
+
+/* ===== Footer ===== */
+footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+}
+footer .inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-copy {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  nav { padding: 20px 24px; }
+  .inner { padding: 0 24px; }
+  .hero { padding-top: 140px; padding-bottom: 0; }
+  .works-section { padding-top: 0; padding-bottom: 100px; }
+  .client-logos { flex-direction: column; gap: 48px; margin-top: 24px; }
+  .client-logo-link img { height: 120px; }
+  .client-logo-yf img { height: 100px; }
+  .client-logo-yf-text img { height: 50px; }
+  .client-text-link { margin-top: 56px; }
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">AN</a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">works</a></li>
+    <li><a href="message.html">message</a></li>
+    <li><a href="contact.html">contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="inner">
+    <span class="hero-axis">design &times; ai</span>
+    <h1 class="hero-name"><a href="about.html" style="color: inherit; transition: color 0.2s;" onmouseover="this.style.color='#C9A96E'" onmouseout="this.style.color='inherit'">Ayumu</a></h1>
+  </div>
+</section>
+
+<section class="works-section">
+  <div class="inner">
+    <div class="client-logos">
+      <a href="works/youthfull.html" class="client-logo-link client-logo-yf">
+        <img src="images/logo-youthfull.png" alt="Youthfull">
+      </a>
+      <a href="works/youthfull.html" class="client-logo-link client-logo-yf-text">
+        <img src="images/logo-youthfull-text.png" alt="Youthfull">
+      </a>
+      <a href="works/kickswrap.html" class="client-logo-link">
+        <img src="images/logo-kickswrap.png" alt="KicksWrap">
+      </a>
+    </div>
+    <div class="client-text-link">
+      <a href="works/sa.html">AI Automation</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <span class="footer-copy">&copy; 2026 AN</span>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+</script>
+</body>
+</html>
