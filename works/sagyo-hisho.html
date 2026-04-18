@@ -26,6 +26,7 @@ body {
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 
+/* ===== Nav ===== */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
@@ -38,16 +39,135 @@ nav.scrolled { border-bottom-color: var(--border); }
 .nav-links a { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
+/* ===== Layout ===== */
 .inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
 
-.work-header { padding-top: 160px; }
-.work-meta-row { padding-top: 64px; display: flex; align-items: baseline; gap: 40px; }
+/* ===== Hero ===== */
+.work-hero { padding-top: 160px; padding-bottom: 80px; }
+.work-meta-row { padding-top: 64px; display: flex; align-items: baseline; gap: 32px; flex-wrap: wrap; }
 .work-tags-detail { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.14em; color: var(--gold); }
-.work-title-detail { font-family: 'Noto Sans JP', sans-serif; font-size: clamp(24px, 3.5vw, 36px); font-weight: 500; line-height: 44px; color: var(--white); padding-top: 16px; padding-bottom: 80px; }
+.status-badge {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400;
+  letter-spacing: 0.12em; color: var(--navy-deep);
+  background: var(--gold); padding: 4px 10px; border-radius: 2px;
+}
+.work-title-detail {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: clamp(24px, 3.5vw, 36px); font-weight: 500;
+  line-height: 44px; color: var(--white);
+  padding-top: 20px; padding-bottom: 16px;
+}
+.work-sub {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 15px; font-weight: 300;
+  line-height: 26px; color: var(--text-muted);
+}
 
+/* ===== Metrics ===== */
+.metrics-section {
+  padding: 64px 0;
+  border-top: 1px solid var(--border);
+}
+.metrics-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+}
+.metric-item {
+  padding: 0 32px 0 0;
+  border-right: 1px solid var(--border);
+}
+.metric-item:first-child { padding-left: 0; }
+.metric-item:last-child { border-right: none; padding-right: 0; padding-left: 32px; }
+.metric-item:nth-child(2) { padding-left: 32px; }
+.metric-num {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(28px, 4vw, 44px); font-weight: 300;
+  color: var(--gold); line-height: 1; letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.metric-label {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 300;
+  line-height: 20px; color: var(--text-muted);
+}
+
+/* ===== Pull Quote ===== */
+.pull-quote-section {
+  padding: 64px 0;
+  border-top: 1px solid var(--border);
+}
+.pull-quote {
+  display: flex; gap: 28px; align-items: flex-start;
+  max-width: 680px;
+}
+.pull-quote-bar {
+  flex-shrink: 0; width: 2px; background: var(--gold);
+  align-self: stretch; min-height: 48px;
+}
+.pull-quote-text {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: clamp(16px, 2vw, 22px); font-weight: 300;
+  line-height: 36px; color: var(--white);
+}
+
+/* ===== Body Section ===== */
+.body-section {
+  padding: 56px 0;
+  border-top: 1px solid var(--border);
+  max-width: 680px;
+}
+.body-section-label {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400;
+  letter-spacing: 0.18em; color: var(--gold);
+  text-transform: lowercase; margin-bottom: 24px;
+}
+.body-text {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 15px; font-weight: 300;
+  line-height: 30px; color: var(--text);
+}
+.body-text p { margin-bottom: 20px; }
+.body-text p:last-child { margin-bottom: 0; }
+
+/* ===== Before / After ===== */
+.before-after-section {
+  padding: 56px 0;
+  border-top: 1px solid var(--border);
+}
+.section-label {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400;
+  letter-spacing: 0.18em; color: var(--gold);
+  text-transform: lowercase; margin-bottom: 40px;
+}
+.ba-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 720px;
+}
+.ba-col-label {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+  letter-spacing: 0.14em; color: var(--text-muted); margin-bottom: 20px;
+}
+.ba-list {
+  list-style: none; display: flex; flex-direction: column; gap: 12px;
+}
+.ba-list li {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: 300;
+  line-height: 22px; color: var(--text);
+  padding-left: 16px; position: relative;
+}
+.ba-list li::before {
+  content: '';
+  position: absolute; left: 0; top: 10px;
+  width: 4px; height: 1px; background: var(--text-muted);
+}
+
+/* ===== System Diagram ===== */
+.diagram-section {
+  padding: 56px 0 0;
+  border-top: 1px solid var(--border);
+}
+.diagram-section .section-label { margin-bottom: 32px; }
+
+/* ===== Gallery / SVG ===== */
 .gallery-strip {
-  display: flex; gap: 2px; overflow-x: auto; overflow-y: hidden;
-  margin-bottom: 80px; cursor: default;
+  display: flex; gap: 2px;
+  overflow-x: auto; overflow-y: hidden;
+  margin-bottom: 0; cursor: default;
   scrollbar-width: thin; scrollbar-color: rgba(201, 169, 110, 0.3) transparent;
 }
 .gallery-strip::-webkit-scrollbar { height: 3px; }
@@ -57,11 +177,32 @@ nav.scrolled { border-bottom-color: var(--border); }
 .gallery-item img { height: 100%; width: auto; display: block; object-fit: contain; transition: opacity 0.2s; }
 .gallery-item:hover img { opacity: 0.85; }
 
-.work-body { padding-bottom: 80px; border-top: 1px solid var(--border); }
-.desc-block { display: grid; grid-template-columns: 120px 1fr; gap: 0 48px; padding: 40px 0; border-bottom: 1px solid var(--border); }
-.desc-key { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); padding-top: 2px; }
-.desc-val { font-family: 'Noto Sans JP', sans-serif; font-size: 15px; font-weight: 300; line-height: 26px; color: var(--text); }
+/* ===== How ===== */
+.how-section {
+  padding: 56px 0;
+  border-top: 1px solid var(--border);
+  max-width: 680px;
+}
 
+/* ===== Confidential ===== */
+.confidential-block {
+  padding: 24px 28px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 48px 0;
+  max-width: 680px;
+}
+.confidential-label {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400;
+  letter-spacing: 0.18em; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 10px;
+}
+.confidential-text {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: 300;
+  line-height: 24px; color: var(--text-muted);
+}
+
+/* ===== Overview ===== */
 .case-overview { padding: 56px 0 8px; }
 .case-overview h2 {
   font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
@@ -82,14 +223,17 @@ nav.scrolled { border-bottom-color: var(--border); }
   color: var(--text); line-height: 1.8; margin: 0;
 }
 
-.back-link-row { padding-bottom: 120px; }
+/* ===== Back Link ===== */
+.back-link-row { padding-top: 48px; padding-bottom: 120px; }
 .back-link { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); transition: color 0.2s; }
 .back-link:hover { color: var(--gold); }
 
+/* ===== Footer ===== */
 footer { padding: 40px 0; border-top: 1px solid var(--border); }
 footer .inner { display: flex; align-items: center; justify-content: space-between; }
 .footer-copy { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.1em; color: var(--text-muted); }
 
+/* ===== Lightbox ===== */
 .lightbox-overlay {
   display: none; position: fixed; inset: 0; z-index: 200;
   background: rgba(8, 14, 26, 0.95); align-items: center; justify-content: center;
@@ -104,13 +248,17 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
 .lightbox-next { right: 16px; }
 .lightbox-counter { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); }
 
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
   nav { padding: 20px 24px; }
   .inner { padding: 0 24px; }
-  .work-header { padding-top: 120px; }
-  .work-meta-row { flex-direction: column; gap: 0; padding-top: 40px; }
-  .work-title-detail { padding-bottom: 48px; }
-  .desc-block { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
+  .work-hero { padding-top: 120px; padding-bottom: 48px; }
+  .work-meta-row { flex-direction: column; gap: 12px; padding-top: 40px; }
+  .work-title-detail { padding-bottom: 12px; }
+  .metrics-row { grid-template-columns: 1fr; gap: 32px; }
+  .metric-item { padding: 0; border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 24px; }
+  .metric-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .ba-grid { grid-template-columns: 1fr; gap: 32px; }
   .case-overview { padding: 40px 0 0; }
   .case-overview dl { grid-template-columns: 1fr; gap: 0; }
   .case-overview dl > div { display: block; margin-bottom: 18px; }
@@ -133,84 +281,155 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
   </ul>
 </nav>
 
-<div class="work-header">
+<!-- 2. Hero -->
+<div class="work-hero">
   <div class="inner">
     <div class="work-meta-row">
       <span class="work-tags-detail">ai / automation</span>
+      <span class="status-badge">INTERNAL｜守秘案件</span>
     </div>
     <h1 class="work-title-detail">作業秘書</h1>
+    <p class="work-sub">週数十本の告知運用を、AIエージェントに引き継いだ。</p>
   </div>
 </div>
 
-<div class="work-body">
-  <div class="inner">
-    <div class="desc-block">
-      <span class="desc-key">what</span>
-      <p class="desc-val">AIエージェントによるハーネス化で、イベント告知文の生成からSlack経由の確認出しまでを自動運用するシステム。</p>
+<!-- 3. Metrics -->
+<div class="inner">
+  <section class="metrics-section">
+    <div class="metrics-row">
+      <div class="metric-item">
+        <p class="metric-num">週数十本</p>
+        <p class="metric-label">自動化した告知本数</p>
+      </div>
+      <div class="metric-item">
+        <p class="metric-num">約1週間</p>
+        <p class="metric-label">構築期間</p>
+      </div>
+      <div class="metric-item">
+        <p class="metric-num">1人</p>
+        <p class="metric-label">担当者（社内AI担当）</p>
+      </div>
     </div>
-    <div class="desc-block">
-      <span class="desc-key">why</span>
-      <p class="desc-val">週数十本の告知作成を手作業で回していた。品質を保ちながら工数を削減し、運用負荷を構造的に下げた。</p>
-    </div>
-    <div class="desc-block">
-      <span class="desc-key">how</span>
-      <p class="desc-val">約1週間で構築。Google Sheets × AIエージェント × Slack Bot。ルール駆動で出力品質を統一し、週数十本の運用を自動化。</p>
-    </div>
-    <div class="desc-block">
-      <span class="desc-key">tags</span>
-      <p class="desc-val">ai / automation</p>
-    </div>
+  </section>
 
-    <section class="case-overview">
-      <h2>overview</h2>
-      <dl>
-        <div>
-          <dt>対象業務</dt>
-          <dd>告知文の生成、配信確認フロー</dd>
-        </div>
-        <div>
-          <dt>構築期間</dt>
-          <dd>約1週間</dd>
-        </div>
-        <div>
-          <dt>運用頻度</dt>
-          <dd>週数十本 → 自動化</dd>
-        </div>
-        <div>
-          <dt>関わり方</dt>
-          <dd>業務委託（社内AI担当として設計・構築）</dd>
-        </div>
-        <div>
-          <dt>役割</dt>
-          <dd>要件定義・エージェント設計・実装</dd>
-        </div>
-        <div>
-          <dt>使用技術</dt>
-          <dd>Google Sheets / AIエージェント / Slack Bot</dd>
-        </div>
-      </dl>
-    </section>
-  </div>
+  <!-- 4. Pull Quote -->
+  <section class="pull-quote-section">
+    <div class="pull-quote">
+      <div class="pull-quote-bar"></div>
+      <p class="pull-quote-text">AIが一度見て作業を始めたら、いつでも⭐︎4の成果を出せるレシピ。</p>
+    </div>
+  </section>
+
+  <!-- 5. Why -->
+  <section class="body-section">
+    <p class="body-section-label">why</p>
+    <div class="body-text">
+      <p>最小人数で回すSNS告知チームが、週数十本という量に追われていた。作成・チェック・配信のそれぞれに人の手が入り、構造的に工数が積み上がる仕組みになっていた。AIで制御できる範囲の業務を自動化し、人が判断すべき箇所だけに集中できる状態を作ることが依頼の核心だった。</p>
+    </div>
+  </section>
+
+  <!-- 6. Before / After -->
+  <section class="before-after-section">
+    <p class="section-label">before / after</p>
+    <div class="ba-grid">
+      <div>
+        <p class="ba-col-label">BEFORE</p>
+        <ul class="ba-list">
+          <li>シート確認と情報収集を手動で実施</li>
+          <li>告知文を毎回手動作成</li>
+          <li>Slackで確認出し・フィードバック待ち</li>
+          <li>修正後に再投稿する往復が発生</li>
+        </ul>
+      </div>
+      <div>
+        <p class="ba-col-label">AFTER</p>
+        <ul class="ba-list">
+          <li>AIが伴走し、ルール通りに生成・整形</li>
+          <li>人間は最終確認のみ</li>
+          <li>確認と配信の往復が大幅に削減</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
 </div>
 
+<!-- 7. System Diagram -->
+<div class="inner">
+  <section class="diagram-section">
+    <p class="section-label">system</p>
+  </section>
+</div>
 <div class="gallery-strip" id="gallery">
   <div class="gallery-item" data-index="0">
     <img src="../images/diagrams/sagyo-hisho.svg" alt="作業秘書 システム図">
   </div>
 </div>
 
+<!-- 8. How -->
 <div class="inner">
+  <section class="how-section">
+    <p class="body-section-label">how</p>
+    <div class="body-text">
+      <p>実際の作業を記録・体系化することから始めた。ルールと作業フローをひとつのプロジェクトとして情報資産に変換し、AIが初見で作業を開始できる状態を作った。誰もが導入に苦労しないよう、ツールへの理解からセットアップ、導入後のサポートまでを一貫して担った。大事にしたのは、作る側の都合より使う側の負担を最小化することだった。</p>
+    </div>
+  </section>
+
+  <!-- 9. Confidential -->
+  <div class="confidential-block">
+    <p class="confidential-label">confidential</p>
+    <p class="confidential-text">結果数値・運用詳細は守秘義務により非公開。詳細についてはお問い合わせください。</p>
+  </div>
+
+  <!-- 10. Overview -->
+  <section class="case-overview">
+    <h2>overview</h2>
+    <dl>
+      <div>
+        <dt>クライアント</dt>
+        <dd>SHIFT AI</dd>
+      </div>
+      <div>
+        <dt>関わり方</dt>
+        <dd>業務委託（社内AI担当として設計・構築）</dd>
+      </div>
+      <div>
+        <dt>役割</dt>
+        <dd>要件定義・エージェント設計・実装</dd>
+      </div>
+      <div>
+        <dt>構築期間</dt>
+        <dd>約1週間</dd>
+      </div>
+      <div>
+        <dt>規模</dt>
+        <dd>週数十本 → 自動化</dd>
+      </div>
+      <div>
+        <dt>使用技術</dt>
+        <dd>Google Sheets / AIエージェント / Slack Bot</dd>
+      </div>
+      <div>
+        <dt>結果</dt>
+        <dd>守秘</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- 11. Back Link -->
   <div class="back-link-row">
     <a href="sa.html" class="back-link">&larr; works</a>
   </div>
 </div>
 
+<!-- 12. Footer -->
 <footer>
   <div class="inner">
     <span class="footer-copy">&copy; 2026 AN</span>
   </div>
 </footer>
 
+<!-- Lightbox -->
 <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true">
   <button class="lightbox-close" id="lbClose">ESC</button>
   <button class="lightbox-prev" id="lbPrev">&larr;</button>

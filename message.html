@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,8 @@
   --text: #E8E4DD;
   --text-muted: #8A8B8E;
   --white: #F5F3EF;
-  --border: rgba(201, 169, 110, 0.12);
+  --border-opacity: 0.12;
+  --border: rgba(201, 169, 110, var(--border-opacity));
 }
 
 /* ===== Reset ===== */
@@ -27,6 +28,10 @@ body {
   background: var(--navy-deep);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
+  animation: breath-bg 8s ease-in-out infinite;
+}
+:root {
+  animation: breath-border 6s ease-in-out infinite;
 }
 a { color: inherit; text-decoration: none; }
 
@@ -86,12 +91,56 @@ nav.scrolled { border-bottom-color: var(--border); }
 .message-body {
   max-width: 560px;
 }
-.message-body p {
+
+/* ===== Message Sections ===== */
+.about-section {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--border);
+}
+.about-section:last-child {
+  border-bottom: none;
+}
+.about-section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: lowercase;
+  display: block;
+  margin-bottom: 32px;
+}
+.about-mission {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 500;
+  line-height: 56px;
+  color: var(--white);
+}
+.about-text {
   font-family: 'Noto Sans JP', sans-serif;
   font-size: 15px;
   font-weight: 300;
+  line-height: 30px;
+  color: var(--text);
+}
+.about-text p {
+  margin-bottom: 24px;
+}
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+.about-subheading {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
   line-height: 26px;
-  color: var(--text-muted);
+  color: var(--white);
+  margin-top: 40px;
+  margin-bottom: 12px;
+}
+.about-subheading:first-child {
+  margin-top: 0;
 }
 
 /* ===== Footer ===== */
@@ -119,6 +168,64 @@ footer .inner {
   .page { padding-top: 140px; padding-bottom: 100px; }
   .page-label { margin-bottom: 48px; }
 }
+
+/* ===== Breath Animations ===== */
+
+/* 1. Global background breath — 8s cycle */
+@keyframes breath-bg {
+  0%, 100% { background-color: #080E1A; }
+  50%       { background-color: #0A1020; }
+}
+
+/* 2. Gold border breath — 6s cycle
+   CSS custom property animation requires @property (Houdini).
+   Fallback: animate a pseudo-element opacity overlay on borders.
+   Strategy: use a wrapper keyframe on body that updates
+   --border-opacity via @property if supported, else static. */
+@property --border-opacity {
+  syntax: '<number>';
+  initial-value: 0.12;
+  inherits: true;
+}
+@keyframes breath-border {
+  0%, 100% { --border-opacity: 0.08; }
+  50%       { --border-opacity: 0.16; }
+}
+
+/* 3. Section reveal items — initial hidden state */
+[data-reveal-item] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 800ms ease-out, transform 800ms ease-out;
+}
+[data-reveal-item].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* no-js fallback: show all reveal items immediately */
+.no-js [data-reveal-item] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none !important;
+    background-color: #091322 !important;
+  }
+  :root {
+    animation: none !important;
+    --border-opacity: 0.12 !important;
+  }
+  [data-reveal-item] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -136,7 +243,41 @@ footer .inner {
   <div class="inner">
     <span class="page-label">message</span>
     <div class="message-body">
-      <p>ここに姿勢・考え方を記載してください。</p>
+
+      <!-- Section 1: ミッション宣言 -->
+      <section class="about-section">
+        <span class="about-section-label">私の軸</span>
+        <p class="about-mission">イシューをクリアにする。</p>
+      </section>
+
+      <!-- Section 2: 解説 -->
+      <section class="about-section" data-reveal>
+        <div class="about-text">
+          <p data-reveal-item>肩書き、職業、やってきたこと<br>「デザイナーです」と答えると、イメージされにくいことがほとんどです。</p>
+          <p data-reveal-item>僕から見てデザインという言葉は、いまUIの領域に偏って使われている。</p>
+          <p data-reveal-item>ただ、本質はもっと違くて、<br>理想と現実のギャップにある課題を解くことがデザイン。<br>然り「デザイン行為」だと思っています。</p>
+          <p data-reveal-item>実装の手段（UI、コード、仕組み、運用）は何でもいい。<br>軸はずっと同じ。</p>
+        </div>
+      </section>
+
+      <!-- Section 3: 仕事の進め方 -->
+      <section class="about-section" data-reveal>
+        <span class="about-section-label">依頼への向き合い方</span>
+        <div class="about-text">
+          <p class="about-subheading" data-reveal-item>思いやり</p>
+          <p data-reveal-item>設計に入る前に、相手の状況と課題を当事者として引き受ける。<br>表面の要望で止まらず、本人も気づいていない問題を探す。</p>
+
+          <p class="about-subheading" data-reveal-item>引く</p>
+          <p data-reveal-item>依頼をそのまま受け取るのではなく、本当にベストなことは何かを一緒に考えます。</p>
+          <p data-reveal-item>例えば、ある仕事で自動化できるなら全部自動化したいと頼まれました。</p>
+          <p data-reveal-item>ただ、全てを便利にすることが相手の課題解決に繋がらないと依頼を進めてく上で感じ、人のなすべき部分と自動化できる部分の「作業の方法」から提案を変えたんです。</p>
+          <p data-reveal-item>そうやって、使ってみてから相手が困らないよう、理想と現実の差分をしっかり言葉に落とし込んで最善を尽くす。<br>相手よりも数歩引いて提案をします。</p>
+
+          <p class="about-subheading" data-reveal-item>育てる</p>
+          <p data-reveal-item>一度作って終わりではなく、<br>使いながら調整し続ける。<br>整え続ける状態を目指します。</p>
+        </div>
+      </section>
+
     </div>
   </div>
 </main>
@@ -148,10 +289,68 @@ footer .inner {
 </footer>
 
 <script>
+/* ===== no-js removal ===== */
+document.documentElement.classList.remove('no-js');
+
+/* ===== Nav scroll ===== */
 const nav = document.getElementById('mainNav');
+
+/* ===== Breath pause on scroll ===== */
+let scrollTimer = null;
+const RESUME_DELAY = 800; // ms
+
+function pauseBreath() {
+  document.body.style.animationPlayState = 'paused';
+  document.documentElement.style.animationPlayState = 'paused';
+}
+function resumeBreath() {
+  document.body.style.animationPlayState = 'running';
+  document.documentElement.style.animationPlayState = 'running';
+}
+
 window.addEventListener('scroll', () => {
+  /* nav scrolled class */
   nav.classList.toggle('scrolled', window.scrollY > 10);
+
+  /* pause breath */
+  pauseBreath();
+  clearTimeout(scrollTimer);
+  scrollTimer = setTimeout(resumeBreath, RESUME_DELAY);
 }, { passive: true });
+
+/* ===== Section reveal (prefers-reduced-motion guard) ===== */
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (prefersReduced) {
+  /* Immediately reveal all items — no transition */
+  document.querySelectorAll('[data-reveal-item]').forEach(el => {
+    el.classList.add('revealed');
+  });
+} else {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const section = entry.target;
+      const items = section.querySelectorAll('[data-reveal-item]');
+
+      /* 「吸う」: 400ms pause → 「吐く」: staggered reveal */
+      setTimeout(() => {
+        items.forEach((item, i) => {
+          setTimeout(() => {
+            item.classList.add('revealed');
+          }, i * 120);
+        });
+      }, 400);
+
+      observer.unobserve(section);
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('[data-reveal]').forEach(section => {
+    observer.observe(section);
+  });
+}
 </script>
 </body>
 </html>
