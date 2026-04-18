@@ -16,7 +16,14 @@
   --text: #E8E4DD;
   --text-muted: #8A8B8E;
   --white: #F5F3EF;
-  --border: rgba(201, 169, 110, 0.12);
+  --border-opacity: 0.12;
+  --border: rgba(201, 169, 110, var(--border-opacity));
+  --ease-pulse: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@property --border-opacity {
+  syntax: '<number>';
+  initial-value: 0.12;
+  inherits: true;
 }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -24,9 +31,50 @@ body {
   background: var(--navy-deep);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
+  animation: breath-bg 8s ease-in-out infinite;
 }
+:root { animation: breath-border 6s ease-in-out infinite; }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
+
+/* ===== Breath Keyframes ===== */
+@keyframes breath-bg {
+  0%, 100% { background-color: #080E1A; }
+  50%       { background-color: #0A1020; }
+}
+@keyframes breath-border {
+  0%, 100% { --border-opacity: 0.08; }
+  50%       { --border-opacity: 0.16; }
+}
+@keyframes hero-breath {
+  0%, 100% { opacity: 0.95; }
+  50%       { opacity: 1.0; }
+}
+
+/* ===== Scroll reveal ===== */
+[data-reveal-item] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 800ms ease-out, transform 800ms ease-out;
+}
+[data-reveal-item].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Ripple ===== */
+.ripple-host { position: relative; overflow: hidden; }
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(201, 169, 110, 0.35);
+  transform: scale(0);
+  animation: ripple-out 500ms ease-out forwards;
+  pointer-events: none;
+}
+@keyframes ripple-out {
+  to { transform: scale(4); opacity: 0; }
+}
 
 /* ===== Nav ===== */
 nav {
@@ -45,9 +93,11 @@ nav.scrolled { border-bottom-color: var(--border); }
 .nav-links { display: flex; gap: 40px; list-style: none; }
 .nav-links a {
   font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
-  letter-spacing: 0.14em; color: var(--text-muted); transition: color 0.2s;
+  letter-spacing: 0.14em; color: var(--text-muted); display: inline-block;
+  transition: color 0.2s, transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-links a:hover { color: var(--gold); transform: scale(1.08); }
+.nav-links a.active { color: var(--gold); }
 
 /* ===== Layout ===== */
 .inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
@@ -75,6 +125,7 @@ nav.scrolled { border-bottom-color: var(--border); }
   font-size: clamp(24px, 3.5vw, 36px); font-weight: 500;
   line-height: 44px; color: var(--white);
   padding-top: 20px; padding-bottom: 16px;
+  animation: hero-breath 6s ease-in-out infinite;
 }
 .work-sub {
   font-family: 'Noto Sans JP', sans-serif; font-size: 15px; font-weight: 300;
@@ -83,9 +134,11 @@ nav.scrolled { border-bottom-color: var(--border); }
 }
 .hero-cta {
   font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
-  letter-spacing: 0.12em; color: var(--gold); transition: color 0.2s;
+  letter-spacing: 0.12em; color: var(--gold);
+  display: inline-block; opacity: 0.7;
+  transition: color 0.2s, opacity 0.3s ease-out, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.hero-cta:hover { color: var(--gold-light); }
+.hero-cta:hover { color: var(--gold-light); opacity: 1.0; transform: scale(1.05) translateX(4px); }
 
 /* ===== Process Flow ===== */
 .process-section {
@@ -134,6 +187,11 @@ nav.scrolled { border-bottom-color: var(--border); }
 .pull-quote-bar {
   flex-shrink: 0; width: 2px; background: var(--gold);
   align-self: stretch; min-height: 48px;
+  animation: pull-quote-breath 6s ease-in-out infinite;
+}
+@keyframes pull-quote-breath {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1.0; }
 }
 .pull-quote-text {
   font-family: 'Noto Sans JP', sans-serif;
@@ -200,9 +258,14 @@ nav.scrolled { border-bottom-color: var(--border); }
 }
 .gallery-item img {
   height: 100%; width: auto; display: block;
-  object-fit: contain; transition: opacity 0.2s;
+  object-fit: contain;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out, filter 0.3s ease-out;
 }
-.gallery-item:hover img { opacity: 0.85; }
+.gallery-item:hover img {
+  opacity: 0.85;
+  transform: scale(1.02);
+  filter: brightness(1.05);
+}
 
 /* ===== Overview ===== */
 .case-overview { padding: 56px 0 8px; }
@@ -236,9 +299,10 @@ nav.scrolled { border-bottom-color: var(--border); }
 .back-link-row { padding-top: 48px; padding-bottom: 120px; }
 .back-link {
   font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
-  letter-spacing: 0.14em; color: var(--text-muted); transition: color 0.2s;
+  letter-spacing: 0.14em; color: var(--text-muted); display: inline-block;
+  transition: color 0.2s, transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.back-link:hover { color: var(--gold); }
+.back-link:hover { color: var(--gold); transform: scale(1.08); }
 
 /* ===== Footer ===== */
 footer { padding: 40px 0; border-top: 1px solid var(--border); }
@@ -300,16 +364,28 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
   .lightbox-prev { left: 4px; }
   .lightbox-next { right: 4px; }
 }
+
+/* ===== prefers-reduced-motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none !important; background-color: #080E1A !important; }
+  :root { animation: none !important; --border-opacity: 0.12 !important; }
+  .work-title-detail { animation: none !important; opacity: 1 !important; }
+  .pull-quote-bar { animation: none !important; opacity: 0.8 !important; }
+  [data-reveal-item] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .nav-links a, .back-link { transition: color 0.2s !important; transform: none !important; }
+  .hero-cta { opacity: 1 !important; transition: color 0.2s !important; transform: none !important; }
+  .gallery-item img { transition: opacity 0.2s !important; transform: none !important; }
+}
 </style>
 </head>
 <body>
 
 <nav id="mainNav">
-  <a href="../index.html" class="nav-logo">AN</a>
+  <a href="../index.html" class="nav-logo ripple-host">AN</a>
   <ul class="nav-links">
-    <li><a href="../index.html" class="active">works</a></li>
-    <li><a href="../message.html">message</a></li>
-    <li><a href="../contact.html">contact</a></li>
+    <li><a href="../index.html" class="active ripple-host">works</a></li>
+    <li><a href="../message.html" class="ripple-host">message</a></li>
+    <li><a href="../contact.html" class="ripple-host">contact</a></li>
   </ul>
 </nav>
 
@@ -458,7 +534,7 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
 
   <!-- 11. Back Link -->
   <div class="back-link-row">
-    <a href="kickswrap.html" class="back-link">&larr; works</a>
+    <a href="kickswrap.html" class="back-link ripple-host">&larr; works</a>
   </div>
 </div>
 
@@ -479,8 +555,45 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
 </div>
 
 <script>
+/* ===== Nav scroll ===== */
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 10); }, { passive: true });
+
+/* ===== Ripple ===== */
+function createRipple(e) {
+  const el = e.currentTarget;
+  const rect = el.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height) * 2;
+  const x = e.clientX - rect.left - size / 2;
+  const y = e.clientY - rect.top - size / 2;
+  const ripple = document.createElement('span');
+  ripple.className = 'ripple';
+  ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px;`;
+  el.appendChild(ripple);
+  ripple.addEventListener('animationend', () => ripple.remove());
+}
+document.querySelectorAll('.ripple-host').forEach(el => {
+  el.addEventListener('click', createRipple);
+});
+
+/* ===== Scroll reveal ===== */
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (prefersReduced) {
+  document.querySelectorAll('[data-reveal-item]').forEach(el => el.classList.add('revealed'));
+} else {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const section = entry.target;
+      const items = section.querySelectorAll('[data-reveal-item]');
+      setTimeout(() => {
+        items.forEach((item, i) => setTimeout(() => item.classList.add('revealed'), i * 120));
+      }, 400);
+      revealObserver.unobserve(section);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('[data-reveal]').forEach(s => revealObserver.observe(s));
+}
 
 const strip = document.getElementById('gallery');
 let isDown = false, startX, scrollLeft;

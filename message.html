@@ -61,9 +61,10 @@ nav.scrolled { border-bottom-color: var(--border); }
   font-weight: 400;
   letter-spacing: 0.14em;
   color: var(--text-muted);
-  transition: color 0.2s;
+  display: inline-block;
+  transition: color 0.2s, transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.nav-links a:hover,
+.nav-links a:hover { color: var(--gold); transform: scale(1.08); }
 .nav-links a.active { color: var(--gold); }
 
 /* ===== Layout ===== */
@@ -221,9 +222,9 @@ footer .inner {
 /* 4隅マーク（L字型）*/
 .frame-corner {
   position: absolute;
-  width: 24px;
-  height: 24px;
-  border: 1px solid var(--gold);
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--gold);
   opacity: 0;
   animation: frame-breath 8s ease-in-out infinite;
 }
@@ -240,10 +241,10 @@ footer .inner {
   animation: frame-breath 8s ease-in-out infinite;
   animation-delay: 1s;
 }
-.frame-line.top    { top: 16px;    left: 40px; right: 40px;   height: 1px; }
-.frame-line.bottom { bottom: 16px; left: 40px; right: 40px;   height: 1px; }
-.frame-line.left   { top: 40px; bottom: 40px; left: 16px;     width: 1px; }
-.frame-line.right  { top: 40px; bottom: 40px; right: 16px;    width: 1px; }
+.frame-line.top    { top: 16px;    left: 48px; right: 48px;   height: 2px; }
+.frame-line.bottom { bottom: 16px; left: 48px; right: 48px;   height: 2px; }
+.frame-line.left   { top: 48px; bottom: 48px; left: 16px;     width: 2px; }
+.frame-line.right  { top: 48px; bottom: 48px; right: 16px;    width: 2px; }
 
 /* ラベル */
 .frame-label {
@@ -252,9 +253,9 @@ footer .inner {
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Inter', sans-serif;
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 400;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.3em;
   color: var(--gold);
   opacity: 0;
   animation: frame-breath 8s ease-in-out infinite;
@@ -268,24 +269,73 @@ footer .inner {
   top: 20px;
   right: 20px;
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   color: var(--gold);
   opacity: 0;
   animation: frame-breath 8s ease-in-out infinite;
   animation-delay: 5s;
 }
 
-/* 呼吸アニメーション */
+/* 呼吸アニメーション - 強化版（0.4→0.95） */
 @keyframes frame-breath {
-  0%, 100% { opacity: 0.25; }
-  50%       { opacity: 0.7; }
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.95; }
+}
+
+/* ===== Ripple ===== */
+.ripple-host { position: relative; overflow: hidden; }
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(201, 169, 110, 0.35);
+  transform: scale(0);
+  animation: ripple-out 500ms ease-out forwards;
+  pointer-events: none;
+}
+@keyframes ripple-out {
+  to { transform: scale(4); opacity: 0; }
 }
 
 /* モバイル: 罫線とラベル省略、4隅マークのみ */
 @media (max-width: 768px) {
   .frame-line,
   .frame-label { display: none; }
-  .frame-corner { width: 16px; height: 16px; }
+  .frame-corner { width: 20px; height: 20px; border-width: 1px; }
+}
+
+/* ===== Mission Mega Typography ===== */
+.mission-mega {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-size: clamp(56px, 12vw, 144px);
+
+  /* white→gold グラデーション */
+  background: linear-gradient(180deg, #F5F3EF 0%, #C9A96E 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* 呼吸（微細）*/
+  animation: mission-breath 8s ease-in-out infinite;
+
+  margin: 24px 0 64px;
+}
+
+.mission-line {
+  display: block;
+}
+
+@keyframes mission-breath {
+  0%, 100% { opacity: 0.95; }
+  50%       { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .mission-mega {
+    font-size: clamp(40px, 11vw, 64px);
+  }
 }
 
 /* prefers-reduced-motion */
@@ -307,6 +357,11 @@ footer .inner {
     animation: none !important;
     opacity: 0.5 !important;
   }
+  .mission-mega {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .nav-links a { transition: color 0.2s !important; transform: none !important; }
 }
 </style>
 </head>
@@ -326,11 +381,11 @@ footer .inner {
 </div>
 
 <nav id="mainNav">
-  <a href="index.html" class="nav-logo">AN</a>
+  <a href="index.html" class="nav-logo ripple-host">AN</a>
   <ul class="nav-links">
-    <li><a href="index.html">works</a></li>
-    <li><a href="message.html" class="active">message</a></li>
-    <li><a href="contact.html">contact</a></li>
+    <li><a href="index.html" class="ripple-host">works</a></li>
+    <li><a href="message.html" class="active ripple-host">message</a></li>
+    <li><a href="contact.html" class="ripple-host">contact</a></li>
   </ul>
 </nav>
 
@@ -340,9 +395,12 @@ footer .inner {
     <div class="message-body">
 
       <!-- Section 1: ミッション宣言 -->
-      <section class="about-section">
-        <span class="about-section-label">私の軸</span>
-        <p class="about-mission">イシューをクリアにする。</p>
+      <section class="about-section section-axis">
+        <span class="about-section-label axis-label">私の軸</span>
+        <h1 class="mission-mega">
+          <span class="mission-line">イシューを</span>
+          <span class="mission-line">クリアにする。</span>
+        </h1>
       </section>
 
       <!-- Section 2: 解説 -->
@@ -387,6 +445,23 @@ footer .inner {
 /* ===== no-js removal ===== */
 document.documentElement.classList.remove('no-js');
 
+/* ===== Ripple ===== */
+function createRipple(e) {
+  const el = e.currentTarget;
+  const rect = el.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height) * 2;
+  const x = e.clientX - rect.left - size / 2;
+  const y = e.clientY - rect.top - size / 2;
+  const ripple = document.createElement('span');
+  ripple.className = 'ripple';
+  ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px;`;
+  el.appendChild(ripple);
+  ripple.addEventListener('animationend', () => ripple.remove());
+}
+document.querySelectorAll('.ripple-host').forEach(el => {
+  el.addEventListener('click', createRipple);
+});
+
 /* ===== Nav scroll ===== */
 const nav = document.getElementById('mainNav');
 
@@ -394,17 +469,19 @@ const nav = document.getElementById('mainNav');
 let scrollTimer = null;
 const RESUME_DELAY = 800; // ms
 
-const frameEls = document.querySelectorAll('.observation-frame *');
+const breathTargets = document.querySelectorAll(
+  '.observation-frame *, .mission-mega'
+);
 
 function pauseBreath() {
   document.body.style.animationPlayState = 'paused';
   document.documentElement.style.animationPlayState = 'paused';
-  frameEls.forEach(el => { el.style.animationPlayState = 'paused'; });
+  breathTargets.forEach(el => { el.style.animationPlayState = 'paused'; });
 }
 function resumeBreath() {
   document.body.style.animationPlayState = 'running';
   document.documentElement.style.animationPlayState = 'running';
-  frameEls.forEach(el => { el.style.animationPlayState = 'running'; });
+  breathTargets.forEach(el => { el.style.animationPlayState = 'running'; });
 }
 
 window.addEventListener('scroll', () => {

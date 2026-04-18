@@ -17,7 +17,14 @@
   --text: #E8E4DD;
   --text-muted: #8A8B8E;
   --white: #F5F3EF;
-  --border: rgba(201, 169, 110, 0.12);
+  --border-opacity: 0.12;
+  --border: rgba(201, 169, 110, var(--border-opacity));
+  --ease-pulse: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@property --border-opacity {
+  syntax: '<number>';
+  initial-value: 0.12;
+  inherits: true;
 }
 
 /* ===== Reset ===== */
@@ -27,8 +34,34 @@ body {
   background: var(--navy-deep);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
+  animation: breath-bg 8s ease-in-out infinite;
 }
+:root { animation: breath-border 6s ease-in-out infinite; }
 a { color: inherit; text-decoration: none; }
+
+/* ===== Breath Keyframes ===== */
+@keyframes breath-bg {
+  0%, 100% { background-color: #080E1A; }
+  50%       { background-color: #0A1020; }
+}
+@keyframes breath-border {
+  0%, 100% { --border-opacity: 0.08; }
+  50%       { --border-opacity: 0.16; }
+}
+
+/* ===== Ripple ===== */
+.ripple-host { position: relative; overflow: hidden; }
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(201, 169, 110, 0.35);
+  transform: scale(0);
+  animation: ripple-out 500ms ease-out forwards;
+  pointer-events: none;
+}
+@keyframes ripple-out {
+  to { transform: scale(4); opacity: 0; }
+}
 
 /* ===== Nav ===== */
 nav {
@@ -56,9 +89,10 @@ nav.scrolled { border-bottom-color: var(--border); }
   font-weight: 400;
   letter-spacing: 0.14em;
   color: var(--text-muted);
-  transition: color 0.2s;
+  display: inline-block;
+  transition: color 0.2s, transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.nav-links a:hover,
+.nav-links a:hover { color: var(--gold); transform: scale(1.08); }
 .nav-links a.active { color: var(--gold); }
 
 /* ===== Layout ===== */
@@ -110,9 +144,13 @@ nav.scrolled { border-bottom-color: var(--border); }
   font-size: 14px;
   font-weight: 300;
   color: var(--white);
-  transition: color 0.2s;
+  display: inline-block;
+  transition: color 0.2s, transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-a.contact-val:hover { color: var(--gold); }
+a.contact-val:hover {
+  color: var(--gold);
+  transform: scale(1.04) translateX(4px);
+}
 
 /* ===== Footer ===== */
 footer {
@@ -141,16 +179,24 @@ footer .inner {
   .contact-item { gap: 24px; flex-direction: column; }
   .contact-key { min-width: unset; }
 }
+
+/* ===== prefers-reduced-motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none !important; background-color: #080E1A !important; }
+  :root { animation: none !important; --border-opacity: 0.12 !important; }
+  .nav-links a { transition: color 0.2s !important; transform: none !important; }
+  a.contact-val { transition: color 0.2s !important; transform: none !important; }
+}
 </style>
 </head>
 <body>
 
 <nav id="mainNav">
-  <a href="index.html" class="nav-logo">AN</a>
+  <a href="index.html" class="nav-logo ripple-host">AN</a>
   <ul class="nav-links">
-    <li><a href="index.html">works</a></li>
-    <li><a href="message.html">message</a></li>
-    <li><a href="contact.html" class="active">contact</a></li>
+    <li><a href="index.html" class="ripple-host">works</a></li>
+    <li><a href="message.html" class="ripple-host">message</a></li>
+    <li><a href="contact.html" class="active ripple-host">contact</a></li>
   </ul>
 </nav>
 
@@ -160,7 +206,7 @@ footer .inner {
     <ul class="contact-list">
       <li class="contact-item">
         <span class="contact-key">Email</span>
-        <a href="mailto:tea.815.room@gmail.com" class="contact-val">tea.815.room@gmail.com</a>
+        <a href="mailto:tea.815.room@gmail.com" class="contact-val ripple-host">tea.815.room@gmail.com</a>
       </li>
     </ul>
   </div>
@@ -173,10 +219,28 @@ footer .inner {
 </footer>
 
 <script>
+/* ===== Nav scroll ===== */
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 10);
 }, { passive: true });
+
+/* ===== Ripple ===== */
+function createRipple(e) {
+  const el = e.currentTarget;
+  const rect = el.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height) * 2;
+  const x = e.clientX - rect.left - size / 2;
+  const y = e.clientY - rect.top - size / 2;
+  const ripple = document.createElement('span');
+  ripple.className = 'ripple';
+  ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px;`;
+  el.appendChild(ripple);
+  ripple.addEventListener('animationend', () => ripple.remove());
+}
+document.querySelectorAll('.ripple-host').forEach(el => {
+  el.addEventListener('click', createRipple);
+});
 </script>
 </body>
 </html>

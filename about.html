@@ -16,14 +16,63 @@
   --text: #E8E4DD;
   --text-muted: #8A8B8E;
   --white: #F5F3EF;
-  --border: rgba(201, 169, 110, 0.12);
+  --border-opacity: 0.12;
+  --border: rgba(201, 169, 110, var(--border-opacity));
+  --ease-pulse: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-breath: cubic-bezier(0.4, 0, 0.6, 1);
+}
+@property --border-opacity {
+  syntax: '<number>';
+  initial-value: 0.12;
+  inherits: true;
 }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: 'Noto Sans JP', 'Inter', system-ui, sans-serif;
   background: var(--navy-deep); color: var(--text); -webkit-font-smoothing: antialiased;
+  animation: breath-bg 8s ease-in-out infinite;
 }
+:root { animation: breath-border 6s ease-in-out infinite; }
 a { color: inherit; text-decoration: none; }
+
+/* ===== Breath Keyframes ===== */
+@keyframes breath-bg {
+  0%, 100% { background-color: #080E1A; }
+  50%       { background-color: #0A1020; }
+}
+@keyframes breath-border {
+  0%, 100% { --border-opacity: 0.08; }
+  50%       { --border-opacity: 0.16; }
+}
+@keyframes hero-breath {
+  0%, 100% { opacity: 0.95; }
+  50%       { opacity: 1.0; }
+}
+
+/* ===== Scroll reveal ===== */
+[data-reveal-item] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 800ms ease-out, transform 800ms ease-out;
+}
+[data-reveal-item].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Ripple ===== */
+.ripple-host { position: relative; overflow: hidden; }
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(201, 169, 110, 0.35);
+  transform: scale(0);
+  animation: ripple-out 500ms ease-out forwards;
+  pointer-events: none;
+}
+@keyframes ripple-out {
+  to { transform: scale(4); opacity: 0; }
+}
 
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -34,8 +83,13 @@ nav {
 nav.scrolled { border-bottom-color: var(--border); }
 .nav-logo { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.18em; color: var(--white); }
 .nav-links { display: flex; gap: 40px; list-style: none; }
-.nav-links a { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); transition: color 0.2s; }
-.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-links a {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+  letter-spacing: 0.14em; color: var(--text-muted); display: inline-block;
+  transition: color 0.2s, transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.nav-links a:hover { color: var(--gold); transform: scale(1.08); }
+.nav-links a.active { color: var(--gold); }
 
 .inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
 
@@ -51,6 +105,7 @@ nav.scrolled { border-bottom-color: var(--border); }
 .about-name {
   font-family: 'Inter', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 300;
   line-height: 1.1; letter-spacing: -0.02em; color: var(--white); margin-bottom: 8px;
+  animation: hero-breath 6s ease-in-out infinite;
 }
 .about-name-jp {
   font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: 400;
@@ -59,12 +114,14 @@ nav.scrolled { border-bottom-color: var(--border); }
 .about-photo {
   width: 270px; height: 270px; flex-shrink: 0;
   border-radius: 50%; overflow: hidden; cursor: pointer;
+  transition: transform 0.4s var(--ease-breath);
 }
+.about-photo:hover { transform: rotate(1.5deg) scale(1.02); }
 .about-photo img {
   width: 100%; height: 100%; display: block; object-fit: cover;
-  transition: opacity 0.2s;
+  transition: opacity 0.3s ease-out, filter 0.3s ease-out;
 }
-.about-photo:hover img { opacity: 0.85; }
+.about-photo:hover img { opacity: 0.85; filter: brightness(1.05); }
 
 .lightbox-overlay {
   display: none; position: fixed; inset: 0; z-index: 200;
@@ -97,7 +154,20 @@ nav.scrolled { border-bottom-color: var(--border); }
 .career-item {
   display: grid; grid-template-columns: 100px 1fr; gap: 24px;
   padding: 16px 0; border-bottom: 1px solid var(--border);
+  position: relative;
+  transition: background-color 0.3s ease-out;
+  border-radius: 4px;
 }
+.career-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(201, 169, 110, 0.05);
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+.career-item:hover::before { opacity: 1; }
 .career-year {
   font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400;
   color: var(--text-muted);
@@ -133,16 +203,27 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
   .about-section { margin-bottom: 56px; }
   .career-item { grid-template-columns: 80px 1fr; gap: 16px; }
 }
+
+/* ===== prefers-reduced-motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none !important; background-color: #080E1A !important; }
+  :root { animation: none !important; --border-opacity: 0.12 !important; }
+  .about-name { animation: none !important; opacity: 1 !important; }
+  [data-reveal-item] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .nav-links a { transition: color 0.2s !important; transform: none !important; }
+  .about-photo { transition: none !important; transform: none !important; }
+  .career-item::before { transition: none !important; }
+}
 </style>
 </head>
 <body>
 
 <nav id="mainNav">
-  <a href="index.html" class="nav-logo">AN</a>
+  <a href="index.html" class="nav-logo ripple-host">AN</a>
   <ul class="nav-links">
-    <li><a href="index.html">works</a></li>
-    <li><a href="message.html">message</a></li>
-    <li><a href="contact.html">contact</a></li>
+    <li><a href="index.html" class="ripple-host">works</a></li>
+    <li><a href="message.html" class="ripple-host">message</a></li>
+    <li><a href="contact.html" class="ripple-host">contact</a></li>
   </ul>
 </nav>
 
@@ -250,11 +331,13 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
 </footer>
 
 <script>
+/* ===== Nav scroll ===== */
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 10);
 }, { passive: true });
 
+/* ===== Lightbox ===== */
 const lb = document.getElementById('lightbox');
 const lbImg = document.getElementById('lbImg');
 document.getElementById('profilePhoto').addEventListener('click', () => {
@@ -269,6 +352,44 @@ document.getElementById('lbClose').addEventListener('click', () => {
 });
 lb.addEventListener('click', e => { if (e.target === lb) { lb.classList.remove('open'); document.body.style.overflow = ''; } });
 document.addEventListener('keydown', e => { if (lb.classList.contains('open') && e.key === 'Escape') { lb.classList.remove('open'); document.body.style.overflow = ''; } });
+
+/* ===== Ripple ===== */
+function createRipple(e) {
+  const el = e.currentTarget;
+  const rect = el.getBoundingClientRect();
+  const size = Math.max(rect.width, rect.height) * 2;
+  const x = e.clientX - rect.left - size / 2;
+  const y = e.clientY - rect.top - size / 2;
+  const ripple = document.createElement('span');
+  ripple.className = 'ripple';
+  ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px;`;
+  el.appendChild(ripple);
+  ripple.addEventListener('animationend', () => ripple.remove());
+}
+document.querySelectorAll('.ripple-host').forEach(el => {
+  el.addEventListener('click', createRipple);
+});
+
+/* ===== Scroll reveal ===== */
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (prefersReduced) {
+  document.querySelectorAll('[data-reveal-item]').forEach(el => el.classList.add('revealed'));
+} else {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const section = entry.target;
+      const items = section.querySelectorAll('[data-reveal-item]');
+      setTimeout(() => {
+        items.forEach((item, i) => {
+          setTimeout(() => item.classList.add('revealed'), i * 120);
+        });
+      }, 400);
+      observer.unobserve(section);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('[data-reveal]').forEach(s => observer.observe(s));
+}
 </script>
 </body>
 </html>
