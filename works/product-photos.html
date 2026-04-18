@@ -21,77 +21,229 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: 'Noto Sans JP', 'Inter', system-ui, sans-serif;
-  background: var(--navy-deep); color: var(--text); -webkit-font-smoothing: antialiased;
+  background: var(--navy-deep);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 
+/* ===== Nav ===== */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 28px 56px; background: var(--navy-deep);
-  border-bottom: 1px solid transparent; transition: border-color 0.3s;
+  padding: 28px 56px;
+  background: var(--navy-deep);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
 }
 nav.scrolled { border-bottom-color: var(--border); }
-.nav-logo { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.18em; color: var(--white); }
+.nav-logo {
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+  letter-spacing: 0.18em; color: var(--white);
+}
 .nav-links { display: flex; gap: 40px; list-style: none; }
-.nav-links a { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); transition: color 0.2s; }
+.nav-links a {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+  letter-spacing: 0.14em; color: var(--text-muted); transition: color 0.2s;
+}
 .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
+/* ===== Layout ===== */
 .inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
 
-.work-header { padding-top: 160px; }
-.work-meta-row { padding-top: 64px; display: flex; align-items: baseline; gap: 40px; }
-.work-tags-detail { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400; letter-spacing: 0.14em; color: var(--gold); }
-.work-title-detail { font-family: 'Noto Sans JP', sans-serif; font-size: clamp(24px, 3.5vw, 36px); font-weight: 500; line-height: 44px; color: var(--white); padding-top: 16px; padding-bottom: 80px; }
+/* ===== Hero ===== */
+.work-hero {
+  padding-top: 160px;
+  padding-bottom: 80px;
+}
+.work-meta-row {
+  padding-top: 64px;
+  display: flex; align-items: baseline; gap: 32px; flex-wrap: wrap;
+}
+.work-tags-detail {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400;
+  letter-spacing: 0.14em; color: var(--gold);
+}
+.work-title-detail {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: clamp(24px, 3.5vw, 36px); font-weight: 500;
+  line-height: 44px; color: var(--white);
+  padding-top: 20px; padding-bottom: 16px;
+}
+.work-sub {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 15px; font-weight: 300;
+  line-height: 26px; color: var(--text-muted);
+}
 
+/* ===== Pull Quote ===== */
+.pull-quote-section {
+  padding: 64px 0;
+  border-top: 1px solid var(--border);
+}
+.pull-quote {
+  display: flex; gap: 28px; align-items: flex-start;
+  max-width: 680px;
+}
+.pull-quote-bar {
+  flex-shrink: 0; width: 2px; background: var(--gold);
+  align-self: stretch; min-height: 48px;
+}
+.pull-quote-text {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: clamp(18px, 2.5vw, 26px); font-weight: 300;
+  line-height: 40px; color: var(--white);
+}
+
+/* ===== Body Sections ===== */
+.body-section {
+  padding: 56px 0;
+  border-top: 1px solid var(--border);
+  max-width: 680px;
+}
+.body-section-label {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400;
+  letter-spacing: 0.18em; color: var(--gold);
+  text-transform: lowercase; margin-bottom: 24px;
+}
+.body-text {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 15px; font-weight: 300;
+  line-height: 30px; color: var(--text);
+}
+.body-text p { margin-bottom: 20px; }
+.body-text p:last-child { margin-bottom: 0; }
+
+/* ===== How Section ===== */
+.how-section {
+  padding: 56px 0;
+  border-top: 1px solid var(--border);
+}
+.section-label {
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400;
+  letter-spacing: 0.18em; color: var(--gold);
+  text-transform: lowercase; margin-bottom: 40px;
+}
+.how-items { display: flex; flex-direction: column; gap: 48px; max-width: 680px; }
+.how-item { display: grid; grid-template-columns: 40px 1fr; gap: 0 28px; align-items: start; }
+.how-num {
+  font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 300;
+  color: var(--gold); letter-spacing: 0; padding-top: 2px;
+  line-height: 26px;
+}
+.how-title {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 15px; font-weight: 500;
+  line-height: 26px; color: var(--white); margin-bottom: 12px;
+}
+.how-body {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 15px; font-weight: 300;
+  line-height: 30px; color: var(--text);
+}
+
+/* ===== Gallery Strip ===== */
 .gallery-strip {
-  display: flex; gap: 2px; overflow-x: auto; overflow-y: hidden;
-  margin-bottom: 80px; cursor: grab;
-  scrollbar-width: thin; scrollbar-color: rgba(201, 169, 110, 0.3) transparent;
+  display: flex; gap: 2px;
+  overflow-x: auto; overflow-y: hidden;
+  margin-bottom: 0; cursor: grab;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 169, 110, 0.3) transparent;
 }
 .gallery-strip:active { cursor: grabbing; }
 .gallery-strip::-webkit-scrollbar { height: 3px; }
 .gallery-strip::-webkit-scrollbar-track { background: transparent; }
-.gallery-strip::-webkit-scrollbar-thumb { background: rgba(201, 169, 110, 0.3); border-radius: 999px; }
-.gallery-item { flex-shrink: 0; height: 360px; overflow: hidden; background: var(--navy-mid); cursor: pointer; display: block; }
-.gallery-item img { height: 100%; width: auto; display: block; object-fit: contain; transition: opacity 0.2s; }
+.gallery-strip::-webkit-scrollbar-thumb {
+  background: rgba(201, 169, 110, 0.3); border-radius: 999px;
+}
+.gallery-item {
+  flex-shrink: 0; height: 360px; overflow: hidden;
+  background: var(--navy-mid); cursor: pointer; display: block;
+}
+.gallery-item img {
+  height: 100%; width: auto; display: block;
+  object-fit: contain; transition: opacity 0.2s;
+}
 .gallery-item:hover img { opacity: 0.85; }
 
-.work-body { padding-bottom: 80px; border-top: 1px solid var(--border); }
-.desc-block { display: grid; grid-template-columns: 120px 1fr; gap: 0 48px; padding: 40px 0; border-bottom: 1px solid var(--border); }
-.desc-key { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); padding-top: 2px; }
-.desc-val { font-family: 'Noto Sans JP', sans-serif; font-size: 15px; font-weight: 300; line-height: 26px; color: var(--text); }
+/* ===== Overview ===== */
+.case-overview { padding: 56px 0 8px; border-top: 1px solid var(--border); }
+.case-overview h2 {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+  letter-spacing: 0.14em; color: var(--gold);
+  text-transform: lowercase; margin-bottom: 32px;
+}
+.case-overview dl {
+  display: grid; grid-template-columns: 120px 1fr;
+  gap: 16px 48px; max-width: 720px;
+}
+.case-overview dl > div { display: contents; }
+.case-overview dt {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 12px; font-weight: 400;
+  color: var(--text-muted); line-height: 1.7; letter-spacing: 0.02em;
+}
+.case-overview dd {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: 300;
+  color: var(--text); line-height: 1.8; margin: 0;
+}
 
-.back-link-row { padding-bottom: 120px; }
-.back-link { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); transition: color 0.2s; }
+/* ===== Back Link ===== */
+.back-link-row { padding-top: 48px; padding-bottom: 120px; }
+.back-link {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+  letter-spacing: 0.14em; color: var(--text-muted); transition: color 0.2s;
+}
 .back-link:hover { color: var(--gold); }
 
+/* ===== Footer ===== */
 footer { padding: 40px 0; border-top: 1px solid var(--border); }
 footer .inner { display: flex; align-items: center; justify-content: space-between; }
-.footer-copy { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.1em; color: var(--text-muted); }
+.footer-copy {
+  font-family: 'Inter', sans-serif; font-size: 11px;
+  font-weight: 300; letter-spacing: 0.1em; color: var(--text-muted);
+}
 
+/* ===== Lightbox ===== */
 .lightbox-overlay {
   display: none; position: fixed; inset: 0; z-index: 200;
-  background: rgba(8, 14, 26, 0.95); align-items: center; justify-content: center;
+  background: rgba(8, 14, 26, 0.95);
+  align-items: center; justify-content: center;
 }
 .lightbox-overlay.open { display: flex; }
 .lightbox-img { max-width: 90vw; max-height: 90vh; object-fit: contain; display: block; }
-.lightbox-close { position: absolute; top: 28px; right: 40px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); cursor: pointer; transition: color 0.2s; background: none; border: none; }
+.lightbox-close {
+  position: absolute; top: 28px; right: 40px;
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400;
+  letter-spacing: 0.14em; color: var(--text-muted);
+  cursor: pointer; transition: color 0.2s; background: none; border: none;
+}
 .lightbox-close:hover { color: var(--gold); }
-.lightbox-prev, .lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 300; color: var(--gold); cursor: pointer; background: none; border: none; padding: 16px 24px; transition: color 0.2s; line-height: 1; }
+.lightbox-prev, .lightbox-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 300;
+  color: var(--gold); cursor: pointer; background: none; border: none;
+  padding: 16px 24px; transition: color 0.2s; line-height: 1;
+}
 .lightbox-prev:hover, .lightbox-next:hover { color: var(--gold-light); }
 .lightbox-prev { left: 16px; }
 .lightbox-next { right: 16px; }
-.lightbox-counter { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); }
+.lightbox-counter {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+  letter-spacing: 0.14em; color: var(--text-muted);
+}
 
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
   nav { padding: 20px 24px; }
   .inner { padding: 0 24px; }
-  .work-header { padding-top: 120px; }
-  .work-meta-row { flex-direction: column; gap: 0; padding-top: 40px; }
-  .work-title-detail { padding-bottom: 48px; }
-  .desc-block { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
+  .work-hero { padding-top: 120px; padding-bottom: 48px; }
+  .work-meta-row { flex-direction: column; gap: 12px; padding-top: 40px; }
+  .work-title-detail { padding-bottom: 12px; }
+  .pull-quote-text { font-size: 18px; line-height: 32px; }
+  .how-item { grid-template-columns: 32px 1fr; gap: 0 20px; }
+  .how-num { font-size: 18px; }
+  .case-overview { padding: 40px 0 0; }
+  .case-overview dl { grid-template-columns: 1fr; gap: 0; }
+  .case-overview dl > div { display: block; margin-bottom: 18px; }
+  .case-overview dt { margin-bottom: 4px; }
   .gallery-item { height: 240px; }
   .back-link-row { padding-bottom: 80px; }
   .lightbox-prev { left: 4px; }
@@ -110,36 +262,66 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
   </ul>
 </nav>
 
-<div class="work-header">
+<!-- Hero -->
+<div class="work-hero">
   <div class="inner">
     <div class="work-meta-row">
       <span class="work-tags-detail">design / ec</span>
     </div>
     <h1 class="work-title-detail">商品画像作成</h1>
+    <p class="work-sub">ECの商品画像を、量産可能なルールに落とし込んだ。</p>
   </div>
 </div>
 
-<div class="work-body">
-  <div class="inner">
-    <div class="desc-block">
-      <span class="desc-key">what</span>
-      <p class="desc-val">KicksWrapのEC商品画像。撮影ディレクション〜画像制作。</p>
+<div class="inner">
+
+  <!-- Pull Quote -->
+  <section class="pull-quote-section">
+    <div class="pull-quote">
+      <div class="pull-quote-bar"></div>
+      <p class="pull-quote-text">画像も、再現性で設計する。</p>
     </div>
-    <div class="desc-block">
-      <span class="desc-key">why</span>
-      <p class="desc-val">商品の魅力と使い方を1枚で伝える。</p>
+  </section>
+
+  <!-- Why -->
+  <section class="body-section">
+    <p class="body-section-label">why</p>
+    <div class="body-text">
+      <p>ECサイトの商品画像が少なく、商品特徴を補足できる画像がなかった。Amazonにも同時出品しているため、両プラットフォームで流用可能な、文字主体の画像が必要だった。</p>
     </div>
-    <div class="desc-block">
-      <span class="desc-key">how</span>
-      <p class="desc-val">構図設計 → 撮影 → レタッチ → コピー配置</p>
+  </section>
+
+  <!-- How -->
+  <section class="how-section">
+    <p class="section-label">how</p>
+    <div class="how-items">
+      <div class="how-item">
+        <span class="how-num">01</span>
+        <div>
+          <p class="how-title">文字主体に振り切った</p>
+          <p class="how-body">商品単独の写真ではなく、特徴を文字で補足する型を選んだ。Amazonとの両用を見据え、撮影に頼らずに伝えられる構成にした。</p>
+        </div>
+      </div>
+      <div class="how-item">
+        <span class="how-num">02</span>
+        <div>
+          <p class="how-title">ブランドのトーンから一歩外した</p>
+          <p class="how-body">クールなミニマリズムをベースにしつつ、商品ごとに表情が出るよう複数パターンを用意した。画一的なテンプレートでは、商品の違いが見えにくくなるため。</p>
+        </div>
+      </div>
+      <div class="how-item">
+        <span class="how-num">03</span>
+        <div>
+          <p class="how-title">即作成可能なルールを固めた</p>
+          <p class="how-body">フォント数（主題・副題・解説の3階層）、背景の黒不透明度（45〜55%）、配色をルール化した。商品が増えても破綻しないパターンとして残るように。</p>
+        </div>
+      </div>
     </div>
-    <div class="desc-block">
-      <span class="desc-key">tags</span>
-      <p class="desc-val">design / ec</p>
-    </div>
-  </div>
+  </section>
+
 </div>
 
+<!-- Gallery -->
 <div class="gallery-strip" id="gallery">
   <div class="gallery-item" data-index="0">
     <img src="../images/kw/product-keeper.webp" alt="商品画像 キーパー">
@@ -153,17 +335,49 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
 </div>
 
 <div class="inner">
+
+  <!-- Overview -->
+  <section class="case-overview">
+    <h2>overview</h2>
+    <dl>
+      <div>
+        <dt>クライアント</dt>
+        <dd>KicksWrap（スニーカーケア事業）</dd>
+      </div>
+      <div>
+        <dt>期間</dt>
+        <dd>2024 –</dd>
+      </div>
+      <div>
+        <dt>スコープ</dt>
+        <dd>EC・Amazon両対応の商品画像制作</dd>
+      </div>
+      <div>
+        <dt>役割</dt>
+        <dd>画像設計 / 制作</dd>
+      </div>
+      <div>
+        <dt>使用技術</dt>
+        <dd>Canva</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- Back Link -->
   <div class="back-link-row">
     <a href="kickswrap.html" class="back-link">&larr; works</a>
   </div>
+
 </div>
 
+<!-- Footer -->
 <footer>
   <div class="inner">
     <span class="footer-copy">&copy; 2026 AN</span>
   </div>
 </footer>
 
+<!-- Lightbox -->
 <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true">
   <button class="lightbox-close" id="lbClose">ESC</button>
   <button class="lightbox-prev" id="lbPrev">&larr;</button>
@@ -175,12 +389,14 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
 <script>
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 10); }, { passive: true });
+
 const strip = document.getElementById('gallery');
 let isDown = false, startX, scrollLeft;
 strip.addEventListener('mousedown', e => { isDown = true; strip.style.cursor = 'grabbing'; startX = e.pageX - strip.offsetLeft; scrollLeft = strip.scrollLeft; });
 strip.addEventListener('mouseleave', () => { isDown = false; strip.style.cursor = 'grab'; });
 strip.addEventListener('mouseup', () => { isDown = false; strip.style.cursor = 'grab'; });
 strip.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); strip.scrollLeft = scrollLeft - (e.pageX - strip.offsetLeft - startX); });
+
 const images = [
   { src: '../images/kw/product-keeper.webp', alt: '商品画像 キーパー' },
   { src: '../images/kw/product-shoelaces.webp', alt: '商品画像 シューレース' },
