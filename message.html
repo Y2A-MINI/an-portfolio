@@ -210,6 +210,84 @@ footer .inner {
   transition: none;
 }
 
+/* ===== Observation Room Frame ===== */
+.observation-frame {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* 4隅マーク（L字型）*/
+.frame-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--gold);
+  opacity: 0;
+  animation: frame-breath 8s ease-in-out infinite;
+}
+.frame-corner.top-left    { top: 16px; left: 16px; border-right: none; border-bottom: none; animation-delay: 0s; }
+.frame-corner.top-right   { top: 16px; right: 16px; border-left: none; border-bottom: none; animation-delay: 2s; }
+.frame-corner.bottom-right{ bottom: 16px; right: 16px; border-left: none; border-top: none; animation-delay: 4s; }
+.frame-corner.bottom-left { bottom: 16px; left: 16px; border-right: none; border-top: none; animation-delay: 6s; }
+
+/* 罫線 */
+.frame-line {
+  position: absolute;
+  background: var(--gold);
+  opacity: 0;
+  animation: frame-breath 8s ease-in-out infinite;
+  animation-delay: 1s;
+}
+.frame-line.top    { top: 16px;    left: 40px; right: 40px;   height: 1px; }
+.frame-line.bottom { bottom: 16px; left: 40px; right: 40px;   height: 1px; }
+.frame-line.left   { top: 40px; bottom: 40px; left: 16px;     width: 1px; }
+.frame-line.right  { top: 40px; bottom: 40px; right: 16px;    width: 1px; }
+
+/* ラベル */
+.frame-label {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  opacity: 0;
+  animation: frame-breath 8s ease-in-out infinite;
+  animation-delay: 3s;
+  white-space: nowrap;
+}
+
+/* クロスヘア（右上）*/
+.frame-crosshair {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--gold);
+  opacity: 0;
+  animation: frame-breath 8s ease-in-out infinite;
+  animation-delay: 5s;
+}
+
+/* 呼吸アニメーション */
+@keyframes frame-breath {
+  0%, 100% { opacity: 0.25; }
+  50%       { opacity: 0.7; }
+}
+
+/* モバイル: 罫線とラベル省略、4隅マークのみ */
+@media (max-width: 768px) {
+  .frame-line,
+  .frame-label { display: none; }
+  .frame-corner { width: 16px; height: 16px; }
+}
+
 /* prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   body {
@@ -225,10 +303,27 @@ footer .inner {
     transform: none !important;
     transition: none !important;
   }
+  .observation-frame * {
+    animation: none !important;
+    opacity: 0.5 !important;
+  }
 }
 </style>
 </head>
 <body>
+
+<div class="observation-frame" aria-hidden="true">
+  <span class="frame-corner top-left"></span>
+  <span class="frame-corner top-right"></span>
+  <span class="frame-corner bottom-left"></span>
+  <span class="frame-corner bottom-right"></span>
+  <span class="frame-line top"></span>
+  <span class="frame-line right"></span>
+  <span class="frame-line bottom"></span>
+  <span class="frame-line left"></span>
+  <span class="frame-label">OBSERVATION ROOM ✕ MESSAGE</span>
+  <span class="frame-crosshair">+</span>
+</div>
 
 <nav id="mainNav">
   <a href="index.html" class="nav-logo">AN</a>
@@ -299,13 +394,17 @@ const nav = document.getElementById('mainNav');
 let scrollTimer = null;
 const RESUME_DELAY = 800; // ms
 
+const frameEls = document.querySelectorAll('.observation-frame *');
+
 function pauseBreath() {
   document.body.style.animationPlayState = 'paused';
   document.documentElement.style.animationPlayState = 'paused';
+  frameEls.forEach(el => { el.style.animationPlayState = 'paused'; });
 }
 function resumeBreath() {
   document.body.style.animationPlayState = 'running';
   document.documentElement.style.animationPlayState = 'running';
+  frameEls.forEach(el => { el.style.animationPlayState = 'running'; });
 }
 
 window.addEventListener('scroll', () => {
