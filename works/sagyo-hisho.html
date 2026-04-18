@@ -62,6 +62,26 @@ nav.scrolled { border-bottom-color: var(--border); }
 .desc-key { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); padding-top: 2px; }
 .desc-val { font-family: 'Noto Sans JP', sans-serif; font-size: 15px; font-weight: 300; line-height: 26px; color: var(--text); }
 
+.case-overview { padding: 56px 0 8px; }
+.case-overview h2 {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+  letter-spacing: 0.14em; color: var(--gold);
+  text-transform: lowercase; margin-bottom: 32px;
+}
+.case-overview dl {
+  display: grid; grid-template-columns: 120px 1fr;
+  gap: 16px 48px; max-width: 720px;
+}
+.case-overview dl > div { display: contents; }
+.case-overview dt {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 12px; font-weight: 400;
+  color: var(--text-muted); line-height: 1.7; letter-spacing: 0.02em;
+}
+.case-overview dd {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: 300;
+  color: var(--text); line-height: 1.8; margin: 0;
+}
+
 .back-link-row { padding-bottom: 120px; }
 .back-link { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: 0.14em; color: var(--text-muted); transition: color 0.2s; }
 .back-link:hover { color: var(--gold); }
@@ -91,6 +111,10 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
   .work-meta-row { flex-direction: column; gap: 0; padding-top: 40px; }
   .work-title-detail { padding-bottom: 48px; }
   .desc-block { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
+  .case-overview { padding: 40px 0 0; }
+  .case-overview dl { grid-template-columns: 1fr; gap: 0; }
+  .case-overview dl > div { display: block; margin-bottom: 18px; }
+  .case-overview dt { margin-bottom: 4px; }
   .gallery-item { height: 240px; }
   .back-link-row { padding-bottom: 80px; }
   .lightbox-prev { left: 4px; }
@@ -126,16 +150,46 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
     </div>
     <div class="desc-block">
       <span class="desc-key">why</span>
-      <p class="desc-val">週数本の告知作成を手作業で回していた。品質を保ちながら工数を削減。</p>
+      <p class="desc-val">週数十本の告知作成を手作業で回していた。品質を保ちながら工数を削減し、運用負荷を構造的に下げた。</p>
     </div>
     <div class="desc-block">
       <span class="desc-key">how</span>
-      <p class="desc-val">Google Sheets × AIエージェント × Slack Bot。ルール駆動で出力品質を統一。</p>
+      <p class="desc-val">約1週間で構築。Google Sheets × AIエージェント × Slack Bot。ルール駆動で出力品質を統一し、週数十本の運用を自動化。</p>
     </div>
     <div class="desc-block">
       <span class="desc-key">tags</span>
       <p class="desc-val">ai / automation</p>
     </div>
+
+    <section class="case-overview">
+      <h2>overview</h2>
+      <dl>
+        <div>
+          <dt>対象業務</dt>
+          <dd>告知文の生成、配信確認フロー</dd>
+        </div>
+        <div>
+          <dt>構築期間</dt>
+          <dd>約1週間</dd>
+        </div>
+        <div>
+          <dt>運用頻度</dt>
+          <dd>週数十本 → 自動化</dd>
+        </div>
+        <div>
+          <dt>関わり方</dt>
+          <dd>業務委託（社内AI担当として設計・構築）</dd>
+        </div>
+        <div>
+          <dt>役割</dt>
+          <dd>要件定義・エージェント設計・実装</dd>
+        </div>
+        <div>
+          <dt>使用技術</dt>
+          <dd>Google Sheets / AIエージェント / Slack Bot</dd>
+        </div>
+      </dl>
+    </section>
   </div>
 </div>
 

@@ -103,6 +103,26 @@ nav.scrolled { border-bottom-color: var(--border); }
   font-weight: 300; line-height: 26px; color: var(--text);
 }
 
+.case-overview { padding: 56px 0 8px; }
+.case-overview h2 {
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+  letter-spacing: 0.14em; color: var(--gold);
+  text-transform: lowercase; margin-bottom: 32px;
+}
+.case-overview dl {
+  display: grid; grid-template-columns: 120px 1fr;
+  gap: 16px 48px; max-width: 720px;
+}
+.case-overview dl > div { display: contents; }
+.case-overview dt {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 12px; font-weight: 400;
+  color: var(--text-muted); line-height: 1.7; letter-spacing: 0.02em;
+}
+.case-overview dd {
+  font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: 300;
+  color: var(--text); line-height: 1.8; margin: 0;
+}
+
 .back-link-row { padding-bottom: 120px; }
 .back-link {
   font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
@@ -153,6 +173,10 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
   .work-meta-row { flex-direction: column; gap: 0; padding-top: 40px; }
   .work-title-detail { padding-bottom: 48px; }
   .desc-block { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
+  .case-overview { padding: 40px 0 0; }
+  .case-overview dl { grid-template-columns: 1fr; gap: 0; }
+  .case-overview dl > div { display: block; margin-bottom: 18px; }
+  .case-overview dt { margin-bottom: 4px; }
   .gallery-item { height: 240px; }
   .back-link-row { padding-bottom: 80px; }
   .lightbox-prev { left: 4px; }
@@ -198,6 +222,40 @@ footer .inner { display: flex; align-items: center; justify-content: space-betwe
       <span class="desc-key">tags</span>
       <p class="desc-val">ai / development / design</p>
     </div>
+
+    <section class="case-overview">
+      <h2>overview</h2>
+      <dl>
+        <div>
+          <dt>クライアント</dt>
+          <dd>KicksWrap（スニーカーケア事業）</dd>
+        </div>
+        <div>
+          <dt>ローンチ</dt>
+          <dd>2026年4月</dd>
+        </div>
+        <div>
+          <dt>関わり方</dt>
+          <dd>業務委託</dd>
+        </div>
+        <div>
+          <dt>役割</dt>
+          <dd>企画・設計・実装・運用</dd>
+        </div>
+        <div>
+          <dt>チーム構成</dt>
+          <dd>一人（複数の関係者と連携）</dd>
+        </div>
+        <div>
+          <dt>スコープ</dt>
+          <dd>AI診断ロジック設計、UIデザイン、フロントエンド実装、Shopifyテーマ統合</dd>
+        </div>
+        <div>
+          <dt>使用技術</dt>
+          <dd>Gemini API / Node.js / Fly.io / Figma / Shopify</dd>
+        </div>
+      </dl>
+    </section>
   </div>
 </div>
 
