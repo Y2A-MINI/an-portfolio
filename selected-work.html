@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <meta name="description" content="ANによるUI/UX設計・実装事例。Tamary会員体験とDr.SHIN靴診断を掲載しています。">
+  <meta name="description" content="ANによるUI/UX・業務システムの事例。Tamary、Dr.SHIN、卸受注、AI顧客対応、ECページ改善、在庫管理、配信管理、導線分析を掲載しています。">
   <title>Selected Work — AN</title>
   <style>
     :root {
@@ -565,11 +565,12 @@
     <section class="document-head wrap" aria-labelledby="page-title">
       <div>
         <p class="label">Selected work</p>
-        <h1 id="page-title">UI/UX・実装事例</h1>
+        <h1 id="page-title">UI/UX・業務システムの事例</h1>
+        <p class="case-summary">体験設計から業務の仕組みづくりまで。公開済みの実績と、現在取り組んでいる開発・調査をまとめています。</p>
       </div>
       <dl class="document-meta">
         <div><dt>用途</dt><dd>新規取引先向け資料</dd></div>
-        <div><dt>更新</dt><dd>2026年9月4日</dd></div>
+        <div><dt>更新</dt><dd>2026年10月7日</dd></div>
       </dl>
     </section>
 
@@ -579,12 +580,42 @@
         <a class="index-item" href="#tamary-case">
           <span class="index-no">01</span>
           <span class="index-name">Tamary Membership Experience</span>
-          <span class="index-type">会員体験 / 開発中</span>
+          <span class="index-type">会員体験 / 開発・検証中</span>
         </a>
         <a class="index-item" href="#drshin-case">
           <span class="index-no">02</span>
           <span class="index-name">Dr.SHIN Shoe Diagnosis</span>
           <span class="index-type">AI診断 / 本番稼働</span>
+        </a>
+        <a class="index-item" href="#wholesale-case">
+          <span class="index-no">03</span>
+          <span class="index-name">KicksWrap 卸受注システム</span>
+          <span class="index-type">卸受注 / 本番導入・改善中</span>
+        </a>
+        <a class="index-item" href="#cs-case">
+          <span class="index-no">04</span>
+          <span class="index-name">KicksWrap AIカスタマーサポート</span>
+          <span class="index-type">顧客対応 / 本番導入・改善中</span>
+        </a>
+        <a class="index-item" href="#storefront-case">
+          <span class="index-no">05</span>
+          <span class="index-name">KicksWrap 商品・コンテンツページ改善</span>
+          <span class="index-type">EC / 本番反映・改善中</span>
+        </a>
+        <a class="index-item" href="#inventory-case">
+          <span class="index-no">06</span>
+          <span class="index-name">KicksWrap 在庫一元管理</span>
+          <span class="index-type">在庫・補充 / 開発・接続検証中</span>
+        </a>
+        <a class="index-item" href="#broadcast-case">
+          <span class="index-no">07</span>
+          <span class="index-name">マルチチャネル配信管理</span>
+          <span class="index-type">告知運用 / 本番導入・改善中</span>
+        </a>
+        <a class="index-item" href="#journey-case">
+          <span class="index-no">08</span>
+          <span class="index-name">KicksWrap ストア導線分析・診断アプリ移行</span>
+          <span class="index-type">分析・UX / 調査・計画段階</span>
         </a>
       </div>
     </nav>
@@ -595,12 +626,12 @@
           <div>
             <p class="case-number">Case 01</p>
             <h2 id="tamary-title">Tamary</h2>
-            <p class="case-summary">会員情報、特典、履歴、会員QRを店舗で扱うためのモバイルWebモック。顧客・スタッフ双方の利用画面と操作フローを設計しています。</p>
+            <p class="case-summary">会員情報、特典、履歴、会員QRを店舗で扱う会員アプリ。顧客・スタッフ双方の画面と操作フローを設計し、Web・Nativeの開発と検証を進めています。ここでは会員体験を確認するWebモックを掲載しています。</p>
           </div>
           <dl class="meta">
-            <div><dt>Status</dt><dd><span class="status">開発中</span></dd></div>
+            <div><dt>Status</dt><dd><span class="status">開発・検証中</span></dd></div>
             <div><dt>Scope</dt><dd>UX設計 / Figma / 実装設計 / 動作検証</dd></div>
-            <div><dt>Surface</dt><dd>Mobile web mock</dd></div>
+            <div><dt>Surface</dt><dd>Web / Native（掲載：Webモック）</dd></div>
           </dl>
         </header>
 
@@ -646,7 +677,7 @@
               <li><span class="fact-no">02</span><span>会員・スタッフ画面の情報設計を統一</span></li>
               <li><span class="fact-no">03</span><span>会員QRの表示・非表示動作を検証</span></li>
             </ol>
-            <p class="publication-note">公開用動画では、QR・会員IDなどの識別情報をマスクしています。本案件は開発中であり、外部サービス連携や本番公開を示すものではありません。</p>
+            <p class="publication-note">掲載動画は会員体験を確認するためのモックです。QR・会員IDなどの識別情報をマスクしています。製品の外部サービス連携や本番公開を示すものではありません。</p>
           </div>
           <aside class="role">
             <h3>AN担当範囲</h3>
@@ -723,9 +754,237 @@
       </div>
     </article>
 
+    <article class="case" id="wholesale-case" aria-labelledby="wholesale-title">
+      <div class="wrap">
+        <header class="case-header">
+          <div>
+            <p class="case-number">Case 03</p>
+            <h2 id="wholesale-title">KicksWrap 卸受注システム</h2>
+            <p class="case-summary">注文受付、承認、注文管理、CSV出力をまとめたB2B業務アプリ。卸先と受注担当の業務を、役割に応じた画面と操作でつないでいます。</p>
+          </div>
+          <dl class="meta">
+            <div><dt>段階</dt><dd><span class="status">本番導入・改善中</span></dd></div>
+            <div><dt>担当</dt><dd>業務設計 / 管理画面 / 実装・検証</dd></div>
+            <div><dt>対象</dt><dd>卸先・受注担当・管理者向けWebアプリ</dd></div>
+          </dl>
+        </header>
+        <section class="content-section details-grid" aria-label="卸受注システムの取り組みと担当範囲">
+          <div>
+            <h3>取り組み</h3>
+            <ol class="facts">
+              <li><span class="fact-no">01</span><span>卸先の注文入力から承認・注文管理までの業務フローを設計</span></li>
+              <li><span class="fact-no">02</span><span>取引先、商品、価格、配送先を扱う管理画面を実装</span></li>
+              <li><span class="fact-no">03</span><span>既存業務に合わせたCSV出力と移行時のデータ互換を検証</span></li>
+            </ol>
+          </div>
+          <aside class="role">
+            <h3>AN担当範囲</h3>
+            <p>要件整理、業務フローと画面の設計、AIを活用した実装・レビュー、移行と本番導入の検証。</p>
+          </aside>
+        </section>
+        <section class="content-section" aria-labelledby="wholesale-stage-title">
+          <div class="section-head">
+            <h3 id="wholesale-stage-title">現在の段階</h3>
+            <p class="section-note">受注管理の本番導入を実施し、改善を継続。月次請求CSV・顧客向け納品書の追加機能は開発と検証を終え、本番反映と確認を残しています。</p>
+          </div>
+          <p class="publication-note">顧客・取引先情報、管理画面のアクセス先、実際の受注データは掲載していません。</p>
+        </section>
+      </div>
+    </article>
+
+    <article class="case" id="cs-case" aria-labelledby="cs-title">
+      <div class="wrap">
+        <header class="case-header">
+          <div>
+            <p class="case-number">Case 04</p>
+            <h2 id="cs-title">KicksWrap AIカスタマーサポート</h2>
+            <p class="case-summary">問い合わせ受付、AIによる分類・返信案、注文確認をつなぐ顧客対応の仕組み。対応担当者が会話と返信状況を同じ窓口で確認できるように設計しています。</p>
+          </div>
+          <dl class="meta">
+            <div><dt>段階</dt><dd><span class="status">本番導入・改善中</span></dd></div>
+            <div><dt>担当</dt><dd>対応フロー / 管理画面 / AI・注文連携</dd></div>
+            <div><dt>対象</dt><dd>問い合わせ窓口・CS管理画面</dd></div>
+          </dl>
+        </header>
+        <section class="content-section details-grid" aria-label="AIカスタマーサポートの取り組みと担当範囲">
+          <div>
+            <h3>取り組み</h3>
+            <ol class="facts">
+              <li><span class="fact-no">01</span><span>商品・ケア相談と、配送・返品・不良の問い合わせ導線を設計</span></li>
+              <li><span class="fact-no">02</span><span>Shopifyの注文情報を使った返信案と、条件付き自動返信を実装</span></li>
+              <li><span class="fact-no">03</span><span>同じ顧客の会話を一つの窓口へまとめ、人が確認・返信する運用を整備</span></li>
+            </ol>
+          </div>
+          <aside class="role">
+            <h3>AN担当範囲</h3>
+            <p>顧客と対応担当者の体験設計、要件整理、AIと注文情報の連携方針、実装・検証、運用改善。</p>
+          </aside>
+        </section>
+        <section class="content-section" aria-labelledby="cs-stage-title">
+          <div class="section-head">
+            <h3 id="cs-stage-title">現在の段階</h3>
+            <p class="section-note">本番導入後も、返信内容、注文照合、例外を人へ渡す条件を改善しています。自動対応は対象条件を限定し、新しい機能の実運用での確認を続けています。</p>
+          </div>
+          <p class="publication-note">問い合わせ原文、顧客情報、返信の内部ルールや運用数値は非公開です。</p>
+        </section>
+      </div>
+    </article>
+
+    <article class="case" id="storefront-case" aria-labelledby="storefront-title">
+      <div class="wrap">
+        <header class="case-header">
+          <div>
+            <p class="case-number">Case 05</p>
+            <h2 id="storefront-title">KicksWrap 商品・コンテンツページ改善</h2>
+            <p class="case-summary">商品説明、比較、FAQなどの情報を、利用者と検索・AIが読み取りやすい構造へ整理。Shopifyの標準構成を使い、運用担当者が編集しやすいページ基盤へ段階的に移しています。</p>
+          </div>
+          <dl class="meta">
+            <div><dt>段階</dt><dd><span class="status">本番反映・改善中</span></dd></div>
+            <div><dt>担当</dt><dd>情報設計 / Shopify / SEO・表示改善</dd></div>
+            <div><dt>対象</dt><dd>商品ページ・ストアコンテンツ</dd></div>
+          </dl>
+        </header>
+        <section class="content-section details-grid" aria-label="商品・コンテンツページ改善の取り組みと担当範囲">
+          <div>
+            <h3>取り組み</h3>
+            <ol class="facts">
+              <li><span class="fact-no">01</span><span>商品情報の見出し階層、比較表、FAQの構造を整理</span></li>
+              <li><span class="fact-no">02</span><span>既存テーマ上でのページ移行と編集の仕組みを実装・検証</span></li>
+              <li><span class="fact-no">03</span><span>購入導線、スマホ表示、旧アプリとの依存を確認し、対象を限定して本番へ反映</span></li>
+            </ol>
+          </div>
+          <aside class="role">
+            <h3>AN担当範囲</h3>
+            <p>ページの情報設計、編集要件整理、テーマ改修方針、実装・レビュー、公開ページの表示・操作検証。</p>
+          </aside>
+        </section>
+        <section class="content-section" aria-labelledby="storefront-stage-title">
+          <div class="section-head">
+            <h3 id="storefront-stage-title">現在の段階</h3>
+            <p class="section-note">ページとテーマの改修を本番へ反映済み。表示速度、旧スクリプトの依存、一部の実画面操作など、残る確認と改善を進めています。検索や売上への効果は今後検証します。</p>
+          </div>
+          <p class="publication-note">公開ストアの改善案件です。未公開の運用データや管理画面は掲載していません。</p>
+        </section>
+      </div>
+    </article>
+
+    <article class="case" id="inventory-case" aria-labelledby="inventory-title">
+      <div class="wrap">
+        <header class="case-header">
+          <div>
+            <p class="case-number">Case 06</p>
+            <h2 id="inventory-title">KicksWrap 在庫一元管理</h2>
+            <p class="case-summary">拠点ごとの在庫、入出庫、補充判断を一つの業務として扱う管理アプリ。倉庫、物流、EC、卸受注をつなぐための画面とデータの流れを設計しています。</p>
+          </div>
+          <dl class="meta">
+            <div><dt>段階</dt><dd><span class="status">開発・接続検証中</span></dd></div>
+            <div><dt>担当</dt><dd>業務要件 / 在庫モデル / UI・連携設計</dd></div>
+            <div><dt>対象</dt><dd>在庫・補充・物流の管理アプリ</dd></div>
+          </dl>
+        </header>
+        <section class="content-section details-grid" aria-label="在庫一元管理の取り組みと担当範囲">
+          <div>
+            <h3>取り組み</h3>
+            <ol class="facts">
+              <li><span class="fact-no">01</span><span>拠点・在庫単位・入出庫・補充の業務要件を整理</span></li>
+              <li><span class="fact-no">02</span><span>在庫状況と確認が必要な項目を扱う管理画面の構成を設計</span></li>
+              <li><span class="fact-no">03</span><span>業務データの取得・変換・保存・画面反映へ向け、基盤の開発と接続検証を進行</span></li>
+            </ol>
+          </div>
+          <aside class="role">
+            <h3>AN担当範囲</h3>
+            <p>業務ヒアリング、要件整理、在庫・補充モデル、画面設計、実装計画と検証方針の策定。</p>
+          </aside>
+        </section>
+        <section class="content-section" aria-labelledby="inventory-stage-title">
+          <div class="section-head">
+            <h3 id="inventory-stage-title">現在の段階</h3>
+            <p class="section-note">開発・接続検証の段階です。外部サービスからの実データ取得と全体の運用開始は未完了。既存の卸受注システムへの接続は、在庫側の条件を確認してから進めます。</p>
+          </div>
+          <p class="publication-note">設計・開発中の事例です。全拠点の在庫が本番で連動している状態を示すものではありません。</p>
+        </section>
+      </div>
+    </article>
+
+    <article class="case" id="broadcast-case" aria-labelledby="broadcast-title">
+      <div class="wrap">
+        <header class="case-header">
+          <div>
+            <p class="case-number">Case 07</p>
+            <h2 id="broadcast-title">マルチチャネル配信管理</h2>
+            <p class="case-summary">イベント情報から告知文の制作、確認、予約、配信までをつなぐ業務ツール。媒体ごとのルールと、人が確認する段階を組み込んで設計しています。</p>
+          </div>
+          <dl class="meta">
+            <div><dt>段階</dt><dd><span class="status">本番導入・改善中</span></dd></div>
+            <div><dt>担当</dt><dd>業務設計 / AI制作支援 / 配信管理</dd></div>
+            <div><dt>対象</dt><dd>告知の確認・予約・運用管理</dd></div>
+          </dl>
+        </header>
+        <section class="content-section details-grid" aria-label="マルチチャネル配信管理の取り組みと担当範囲">
+          <div>
+            <h3>取り組み</h3>
+            <ol class="facts">
+              <li><span class="fact-no">01</span><span>媒体別の告知ルールと承認・予約の流れを整理</span></li>
+              <li><span class="fact-no">02</span><span>X・Discord向けの制作・再編集・予約管理を実装</span></li>
+              <li><span class="fact-no">03</span><span>配信対象・日時・内容の照合と、例外時に止める仕組みを検証</span></li>
+            </ol>
+          </div>
+          <aside class="role">
+            <h3>AN担当範囲</h3>
+            <p>告知運用の要件整理、確認フローと媒体別ルールの設計、AI活用、実装・検証、運用改善。</p>
+          </aside>
+        </section>
+        <section class="content-section" aria-labelledby="broadcast-stage-title">
+          <div class="section-head">
+            <h3 id="broadcast-stage-title">現在の段階</h3>
+            <p class="section-note">本番導入後も、文章の修正反映や取得・予約の照合を改善しています。外部接続の復旧と個別配信の確認が残り、運用の安定化を進めています。</p>
+          </div>
+          <p class="publication-note">社内向けの運用案件です。投稿本文、予約情報、内部画面、配信先情報は非公開です。</p>
+        </section>
+      </div>
+    </article>
+
+    <article class="case" id="journey-case" aria-labelledby="journey-title">
+      <div class="wrap">
+        <header class="case-header">
+          <div>
+            <p class="case-number">Case 08</p>
+            <h2 id="journey-title">KicksWrap ストア導線分析・診断アプリ移行</h2>
+            <p class="case-summary">診断の利用、商品提案、注文を同じ流れとして捉えるための調査と設計。どこで離脱し、どの商品が注文につながるかを確認できる計測基盤と、診断アプリの移行方針を検討しています。</p>
+          </div>
+          <dl class="meta">
+            <div><dt>段階</dt><dd><span class="status">調査・計画段階</span></dd></div>
+            <div><dt>担当</dt><dd>導線調査 / 計測設計 / 診断移行計画</dd></div>
+            <div><dt>対象</dt><dd>ストア内の診断・商品提案・購入導線</dd></div>
+          </dl>
+        </header>
+        <section class="content-section details-grid" aria-label="ストア導線分析の取り組みと担当範囲">
+          <div>
+            <h3>取り組み</h3>
+            <ol class="facts">
+              <li><span class="fact-no">01</span><span>本番テーマ、既存診断アプリ、注文の記録を照合</span></li>
+              <li><span class="fact-no">02</span><span>診断利用と注文の部分的な観測を分け、現状の計測範囲を整理</span></li>
+              <li><span class="fact-no">03</span><span>設問・回答・結果商品を保全する手順と、段階的な移行計画を作成</span></li>
+            </ol>
+          </div>
+          <aside class="role">
+            <h3>AN担当範囲</h3>
+            <p>現況調査、導線・計測の設計、移行要件整理、検証計画と工数見積り。</p>
+          </aside>
+        </section>
+        <section class="content-section" aria-labelledby="journey-stage-title">
+          <div class="section-head">
+            <h3 id="journey-stage-title">現在の段階</h3>
+            <p class="section-note">現況調査と計画の段階です。移行対象、UIの変更範囲、データ保存と同意の条件を確認中で、移行実装・本番切替は未着手です。売上低下の原因や改善効果は未確定です。</p>
+          </div>
+          <p class="publication-note">調査・計画の事例です。売上・注文・顧客の個別データや、未確認の成果数値は掲載していません。</p>
+        </section>
+      </div>
+    </article>
+
     <footer class="document-footer wrap">
       <h2>掲載注記</h2>
-      <p>本資料はリンク共有先での閲覧を想定しています。Tamaryは開発中のモック、Dr.SHINは本番稼働中の公開ページです。掲載画像・動画は各案件の設計および動作確認を目的として収録しています。</p>
+      <p>本資料はリンク共有先での閲覧を想定し、2026年10月7日時点の案件記録をもとに代表事例を掲載しています。Tamaryの動画は開発中のモック、Dr.SHINの動画は2026年9月4日に公開ページで収録したものです。各案件の導入実績と、開発・調査・改善の段階を併記しています。内部画面や個別データの掲載を控えた案件は、取り組みと担当範囲を文章で紹介しています。</p>
     </footer>
   </main>
 
