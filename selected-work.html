@@ -366,6 +366,42 @@
       height: auto;
     }
 
+    .screen-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 24px;
+      margin-top: 28px;
+    }
+
+    .screen-gallery figure { min-width: 0; }
+    .screen-gallery figcaption strong,
+    .screen-gallery figcaption span,
+    .content-section > figure figcaption strong,
+    .content-section > figure figcaption span { display: block; }
+    figcaption strong { color: var(--ink); font-weight: 600; margin-bottom: 4px; }
+    .screen-disclosure { margin: 0 0 24px; max-width: 880px; }
+
+    .screen-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+      padding: 16px 20px 16px 40px;
+      margin: 0 0 20px;
+      border-top: 1px solid var(--line-soft);
+      border-bottom: 1px solid var(--line-soft);
+      font-size: 13px;
+      line-height: 20px;
+    }
+    .screen-flow li { padding-right: 8px; }
+    .public-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 20px; }
+    .public-links a { color: var(--ink); font-size: 14px; line-height: 22px; text-underline-offset: 4px; }
+    @media (max-width: 700px) {
+      .screen-gallery { grid-template-columns: 1fr; gap: 28px; }
+      .screen-flow { display: block; }
+      .screen-flow li + li { margin-top: 8px; }
+      .public-links { flex-direction: column; }
+    }
+
     figcaption,
     .media-note,
     .publication-note {
@@ -583,7 +619,7 @@
       </div>
       <dl class="document-meta">
         <div><dt>用途</dt><dd>新規取引先向け資料</dd></div>
-        <div><dt>更新</dt><dd>2026年10月7日</dd></div>
+        <div><dt>更新</dt><dd>2026年10月13日</dd></div>
       </dl>
     </section>
 
@@ -783,15 +819,45 @@
         </header>
         <section class="content-section" aria-labelledby="wholesale-visual-title">
           <div class="section-head">
-            <h3 id="wholesale-visual-title">画面イメージ</h3>
-            <p class="section-note">受注一覧から注文・請求・物流の状態を確認する画面。受付日や卸先で絞り込み、確認が必要な注文を見つけられる構成です。</p>
+            <h3 id="wholesale-visual-title">画面と操作の流れ</h3>
+            <p class="section-note">卸先は商品を選んで数量・配送先を確認し、注文を依頼。管理側は受注一覧から詳細へ進み、確認・承認を行う構成です。</p>
           </div>
+          <ol class="screen-flow" aria-label="卸受注の操作順">
+            <li>商品選択</li><li>カート</li><li>注文確認</li><li>受注一覧</li><li>注文詳細・承認</li>
+          </ol>
+          <p class="media-note screen-disclosure">以下は実際の画面コードをローカルのモック環境で表示したスクリーンショットです。取引先・氏名・注文・価格・住所はすべて架空で、商品画像も説明用のサンプルです。本番の注文や承認は行っていません。画像を押すと拡大できます。</p>
           <figure>
-            <a class="case-visual" href="assets/selected-work/wholesale-screen-recreated-20261012.png" target="_blank" rel="noopener" aria-label="卸受注の再現画像を拡大して見る">
-              <img src="assets/selected-work/wholesale-screen-recreated-20261012.png" alt="架空の注文3件を使って再現した受注一覧。注文番号、受付日時、卸先、金額、注文・請求・物流の状態と絞り込みを表示。" width="1586" height="992" loading="lazy" decoding="async">
+            <a class="case-visual" href="assets/selected-work/wholesale-orders-mock-20261013.jpg" target="_blank" rel="noopener" aria-label="04 / 管理側：受注一覧の画像を拡大して見る">
+              <img src="assets/selected-work/wholesale-orders-mock-20261013.jpg" alt="架空の受注5件を表示した管理画面。絞り込み条件と注文・請求・物流の状態が並ぶ。" width="1265" height="712" loading="lazy" decoding="async">
             </a>
-            <figcaption>実装の画面構成を参考に生成AIで再制作した説明用画像です。取引先・注文・金額・状態はすべて架空のサンプルで、実際のスクリーンショットではありません。画像を押すと拡大できます。</figcaption>
+            <figcaption><strong>04 / 管理側：受注一覧</strong><span>受付日・卸先・注文状態で絞り込み、注文・請求・物流の状態を一覧で確認。</span></figcaption>
           </figure>
+          <div class="screen-gallery">
+          <figure>
+            <a class="case-visual" href="assets/selected-work/wholesale-products-mock-20261013.jpg" target="_blank" rel="noopener" aria-label="01 / 卸先：商品選択の画像を拡大して見る">
+              <img src="assets/selected-work/wholesale-products-mock-20261013.jpg" alt="実装UIの架空の商品一覧。検索とカテゴリの絞り込み、商品カードとサンプル価格が並ぶ。" width="1265" height="712" loading="lazy" decoding="async">
+            </a>
+            <figcaption><strong>01 / 卸先：商品選択</strong><span>商品を検索し、カテゴリや価格を確認してカートへ追加。</span></figcaption>
+          </figure>
+          <figure>
+            <a class="case-visual" href="assets/selected-work/wholesale-cart-mock-20261013.jpg" target="_blank" rel="noopener" aria-label="02 / 卸先：カートの画像を拡大して見る">
+              <img src="assets/selected-work/wholesale-cart-mock-20261013.jpg" alt="架空の商品2点をまとめたカート。数量変更、配送先選択、商品小計と送料を表示。" width="1265" height="712" loading="lazy" decoding="async">
+            </a>
+            <figcaption><strong>02 / 卸先：カート</strong><span>数量と配送先を調整し、小計・送料を確認して次へ進む。</span></figcaption>
+          </figure>
+          <figure>
+            <a class="case-visual" href="assets/selected-work/wholesale-checkout-mock-20261013.jpg" target="_blank" rel="noopener" aria-label="03 / 卸先：注文確認の画像を拡大して見る">
+              <img src="assets/selected-work/wholesale-checkout-mock-20261013.jpg" alt="架空の注文確認画面。配送先、金額、在庫確定前の注文依頼である旨の案内を表示。" width="1265" height="712" loading="lazy" decoding="async">
+            </a>
+            <figcaption><strong>03 / 卸先：注文確認</strong><span>配送先と金額を確認。送信後に担当者が在庫を確認・承認する流れ。</span></figcaption>
+          </figure>
+          <figure>
+            <a class="case-visual" href="assets/selected-work/wholesale-detail-mock-20261013.jpg" target="_blank" rel="noopener" aria-label="05 / 管理側：注文詳細の画像を拡大して見る">
+              <img src="assets/selected-work/wholesale-detail-mock-20261013.jpg" alt="架空の注文DEMO-001の詳細。注文状態、配送先、商品明細と承認へ進むボタンを表示。" width="1265" height="712" loading="lazy" decoding="async">
+            </a>
+            <figcaption><strong>05 / 管理側：注文詳細</strong><span>注文内容と配送先を読み、承認画面へ進む。</span></figcaption>
+          </figure>
+          </div>
         </section>
         <section class="content-section details-grid" aria-label="卸受注システムの取り組みと担当範囲">
           <div>
@@ -833,15 +899,33 @@
         </header>
         <section class="content-section" aria-labelledby="cs-visual-title">
           <div class="section-head">
-            <h3 id="cs-visual-title">画面イメージ</h3>
-            <p class="section-note">問い合わせを選び、内容と注文情報を読み、AI返信案を確認・編集して送信する流れ。対応担当者の判断と操作が一つの受信箱でつながります。</p>
+            <h3 id="cs-visual-title">画面と操作の流れ</h3>
+            <p class="section-note">受信箱で会話を選び、問い合わせと注文番号を確認。AI返信案を人が編集し、送信または日時を指定して予約する流れを、実装の画面で紹介します。</p>
           </div>
+          <ol class="screen-flow" aria-label="CSの操作順">
+            <li>問い合わせを選ぶ</li><li>返信案を確認・編集</li><li>送信・予約</li><li>会話・予約を確認</li>
+          </ol>
+          <p class="media-note screen-disclosure">実際の画面テンプレートに架空データを入れた、説明用モックのスクリーンショットです。顧客・メール・会話・注文・返信・予約はすべてサンプルで、実際の顧客情報や問い合わせは使用していません。実送信は行っていません。</p>
           <figure>
-            <a class="case-visual" href="assets/selected-work/cs-screen-recreated-20261012-v2.png" target="_blank" rel="noopener" aria-label="AIカスタマーサポートの再現画像を拡大して見る">
-              <img src="assets/selected-work/cs-screen-recreated-20261012-v2.png" alt="架空の配送相談を使った受信箱の再現画像。会話一覧、問い合わせ、AI返信案の編集、承認送信と予約送信を表示。" width="1586" height="992" loading="lazy" decoding="async">
+            <a class="case-visual" href="assets/selected-work/cs-inbox-mock-20261013.jpg" target="_blank" rel="noopener" aria-label="01 / 受信箱・AI返信案の編集の画像を拡大して見る">
+              <img src="assets/selected-work/cs-inbox-mock-20261013.jpg" alt="架空の顧客を表示した実装UIの受信箱。左に会話一覧、右に問い合わせとAI返信案、予約・送信ボタンを表示。" width="1280" height="720" loading="lazy" decoding="async">
             </a>
-            <figcaption>実装の画面構成を参考に生成AIで再制作した説明用画像です。顧客・会話・注文・返信文は新しく作った架空の例で、実際の顧客情報や問い合わせは使用していません。画像を押すと拡大できます。</figcaption>
+            <figcaption><strong>01 / 受信箱・AI返信案の編集</strong><span>会話一覧と問い合わせを見ながら、AI返信案を確認・修正。送信・予約へつなげる。</span></figcaption>
           </figure>
+          <div class="screen-gallery">
+          <figure>
+            <a class="case-visual" href="assets/selected-work/cs-conversation-mock-20261013.jpg" target="_blank" rel="noopener" aria-label="02 / 同じ顧客の会話履歴の画像を拡大して見る">
+              <img src="assets/selected-work/cs-conversation-mock-20261013.jpg" alt="架空の配送相談を表示した会話履歴。顧客とCSの発言を吹き出しで表示し、返信欄を備える。" width="1280" height="720" loading="lazy" decoding="async">
+            </a>
+            <figcaption><strong>02 / 同じ顧客の会話履歴</strong><span>問い合わせ、返信、追加の連絡を同じスレッドで読み、続けて対応できる。</span></figcaption>
+          </figure>
+          <figure>
+            <a class="case-visual" href="assets/selected-work/cs-schedule-mock-20261013.jpg" target="_blank" rel="noopener" aria-label="03 / 予約送信タイムラインの画像を拡大して見る">
+              <img src="assets/selected-work/cs-schedule-mock-20261013.jpg" alt="実装UIの予約タイムライン。架空の返信予約3件が週次カレンダーに並ぶ。" width="1280" height="720" loading="lazy" decoding="async">
+            </a>
+            <figcaption><strong>03 / 予約送信タイムライン</strong><span>予約した返信を日付と時刻で確認し、対象の会話へ戻る入口を用意。</span></figcaption>
+          </figure>
+          </div>
         </section>
         <section class="content-section details-grid" aria-label="AIカスタマーサポートの取り組みと担当範囲">
           <div>
@@ -883,15 +967,28 @@
         </header>
         <section class="content-section" aria-labelledby="storefront-visual-title">
           <div class="section-head">
-            <h3 id="storefront-visual-title">改善内容の図解</h3>
-            <p class="section-note">見出しで情報の階層を整え、比較表とFAQを構造化。商品情報を読む画面と、担当者が標準セクションから編集する画面の関係を図にしました。</p>
+            <h3 id="storefront-visual-title">公開サイトの実画面</h3>
+            <p class="section-note">商品ごとの違いを比較表に整理し、よくある質問を開いて読める構成へ。公開中のページで、情報の並びと操作を確認できます。</p>
           </div>
+          <div class="public-links" aria-label="改善した公開ページ">
+            <a href="https://kickswrap.com/products/easy-shoelaces" target="_blank" rel="noopener">商品ページを見る — Easy Shoelaces <span aria-hidden="true">↗</span></a>
+            <a href="https://kickswrap.com/pages/faq" target="_blank" rel="noopener">FAQページを見る <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="media-note screen-disclosure">2026年10月13日に公開サイトを撮影したスクリーンショットです。現在の表示を紹介するもので、改修前との比較や検索・売上への効果を示すものではありません。</p>
+          <div class="screen-gallery">
           <figure>
-            <a class="case-visual" href="assets/selected-work/storefront-improvements-diagram-20261012.png" target="_blank" rel="noopener" aria-label="ページ改善の図解を拡大して見る">
-              <img src="assets/selected-work/storefront-improvements-diagram-20261012.png" alt="商品ページ改善の模式図。見出しの階層、比較表・FAQの構造、標準セクションでの編集を、サンプルの商品ページと編集画面で説明。" width="1586" height="992" loading="lazy" decoding="async">
+            <a class="case-visual" href="assets/selected-work/storefront-comparison-live-20261013.jpg" target="_blank" rel="noopener" aria-label="01 / 商品ページ：比較表の画像を拡大して見る">
+              <img src="assets/selected-work/storefront-comparison-live-20261013.jpg" alt="KicksWrap公開商品ページの実スクリーンショット。Easy Shoelacesなど3商品の価格、特徴、サイズ、カラーを比較する表。" width="1265" height="712" loading="lazy" decoding="async">
             </a>
-            <figcaption>実施した変更点を生成AIで図解した模式図です。商品・説明・編集画面は説明用に作成しており、実画面のBefore / Afterや、検索・売上への効果を示す画像ではありません。画像を押すと拡大できます。</figcaption>
+            <figcaption><strong>01 / 商品ページ：比較表</strong><span>特徴・サイズ・カラー・先端チップの違いを同じ表で比較。</span></figcaption>
           </figure>
+          <figure>
+            <a class="case-visual" href="assets/selected-work/storefront-faq-live-20261013.jpg" target="_blank" rel="noopener" aria-label="02 / コンテンツページ：FAQの画像を拡大して見る">
+              <img src="assets/selected-work/storefront-faq-live-20261013.jpg" alt="KicksWrap公開FAQページの実スクリーンショット。発送日数の質問を開いて回答を表示。" width="1265" height="712" loading="lazy" decoding="async">
+            </a>
+            <figcaption><strong>02 / コンテンツページ：FAQ</strong><span>質問を選ぶと回答が開き、必要な情報を順に読める。</span></figcaption>
+          </figure>
+          </div>
         </section>
         <section class="content-section details-grid" aria-label="商品・コンテンツページ改善の取り組みと担当範囲">
           <div>
@@ -1045,7 +1142,7 @@
 
     <footer class="document-footer wrap">
       <h2>掲載注記</h2>
-      <p>本資料はリンク共有先での閲覧を想定し、2026年10月7日時点の案件記録をもとに代表事例を掲載しています。Tamaryの動画は開発中のモック、Dr.SHINの動画は2026年9月4日に公開ページで収録したものです。各案件の導入実績と、開発・調査・改善の段階を併記しています。内部画面や個別データの掲載を控えた案件は、取り組みと担当範囲を文章で紹介しています。</p>
+      <p>本資料はリンク共有先での閲覧を想定し、2026年10月7日時点の案件記録をもとに代表事例を掲載しています。Tamaryの動画は開発中のモック、Dr.SHINの動画は2026年9月4日に公開ページで収録したものです。各案件の導入実績と、開発・調査・改善の段階を併記しています。業務アプリの画像は実装コードを用いた架空データのモック、商品ページとFAQは2026年10月13日の公開画面です。実際の顧客・取引先情報や受注・問い合わせデータは掲載していません。</p>
     </footer>
   </main>
 
